@@ -1,6 +1,6 @@
 {
   "formName": "personGridForm",
-  "defid": "6052978A-1ECB-4F96-A16B-93548936AFC0",
+  "defid": "b2d1eb42-30fb-4cba-a7b5-411f37f84b4e",
   "label": "Выберите гражданина из списка",
   "sections": [
     {
@@ -52,7 +52,9 @@
           "type": "DateTime",
           "name": "Date_of_Birth",
           "label": "Дата рождения",
-          "edit": true
+          "edit": false,
+          "show": true,
+          "required": true
         },
         {
           "type": "Enum",
@@ -106,8 +108,9 @@
           "type": "DateTime",
           "name": "Date_of_Issue",
           "label": "Дата выдачи",
-          "apiName": null,
-          "edit": true
+          "edit": false,
+          "show": true,
+          "required": true
         }
       ]
     }

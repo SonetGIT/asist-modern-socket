@@ -1,6 +1,6 @@
 {
   "formName": "creatPersonForm",
-  "defid": "6052978A-1ECB-4F96-A16B-93548936AFC0",
+  "defid": "1914544a-7d91-404e-93f0-d931bafca9d3",
   "label": "Форма создания гражданина",
   "sections": [
     {
@@ -52,8 +52,8 @@
           "type": "DateTime",
           "name": "Date_of_Birth",
           "label": "Дата рождения",
-          "apiName": null,
-          "edit": true,
+          "edit": false,
+          "show": true,
           "required": true
         },
         {
@@ -111,8 +111,7 @@
           "type": "DateTime",
           "name": "Date_of_Issue",
           "label": "Дата выдачи",
-          "apiName": null,
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": true
         }

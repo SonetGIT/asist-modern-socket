@@ -106,7 +106,9 @@ async function restoreSession(userId, session_id, userRole) {
       if (task.userId.value === userId) {
         if (
           taskType === "showPersonSearchForm" ||
-          taskType === "showPersonCreatForm"
+          taskType === "showPersonCreatForm" ||
+          taskType === "showPersonFilterForm" ||
+          taskType === "showPersonOpenForm"
         ) {
           message = JSON.parse(task.taskVariables.value);
           await sendPersonForm(message, camundaTaskList[i].id, true);
@@ -416,6 +418,7 @@ async function sendUserForm(session_id, message, restore) {
     session_id,
     process_id: message.process_id,
     tabLabel: message.tabLabel,
+    totalCount: message.totalCount,
   };
   console.log("Sending User Form");
   await sendMessage(mes);
@@ -473,6 +476,7 @@ async function sendPersonForm(message, taskID, restore) {
     session_id: message.session_id,
     process_id: message.process_id,
     tabLabel: message.tabLabel,
+    totalCount: message.totalCount,
   };
   console.log("Sending User Form", mes);
   await sendMessage(mes);
@@ -515,7 +519,6 @@ async function sendCloseMonthForm(message, taskID, restore) {
     selectedDoc: message.selectedDoc,
     gridForm: gridForm,
     docList: message.docList,
-    //docList: JSON.stringify(newDocList), //удалить пон
     size: message.size,
     page: message.page,
     formType: message.formType,
@@ -1198,7 +1201,7 @@ async function insertForm(incomingJson) {
     })
       .then(async function (response) {
         let success = response[0].isSuccess;
-        // console.log("SUCCESS: ", success, formsToInsert[i].formName)
+        console.log("UPDATE FORM: ", success, formsToInsert[i].formName);
         if (success === false) {
           console.log("ERROR UPDATE TRY INSERT: ", formsToInsert[i].formName);
           await request({
@@ -1329,17 +1332,13 @@ async function sendRabbitMessage(msg) {
     await sendUserForm(session_id, message, false);
   } else if (taskType === "setRoleToUser") {
     await setRoleToUser(session_id, message);
-  } else if (
-    taskType === "showContractsSearchForm" ||
-    taskType === "showContractsCreatingForm" ||
-    taskType === "showContractsEditForm"
-  ) {
-    await sendContractsForm(session_id, message);
   } else if (taskType === "showToast") {
     await sendToast(message);
   } else if (
     taskType === "showPersonSearchForm" ||
-    taskType === "showPersonCreatForm"
+    taskType === "showPersonCreatForm" ||
+    taskType === "showPersonFilterForm" ||
+    taskType === "showPersonOpenFrom"
   ) {
     await sendPersonForm(taskVariables, message.taskID);
   } else if (
