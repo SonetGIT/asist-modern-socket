@@ -3,7 +3,7 @@
     "null": [],
     "PersonGridFormButtons": [
       {
-        "name": "selectButton",
+        "name": "select",
         "label": "Выбрать",
         "backgroundColor": "#4F7AAE",
         "color": "white",

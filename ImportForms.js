@@ -8,6 +8,7 @@ const formsToInsert = [
   require("./Forms/Person/personSearchForm.json"),
   require("./Forms/Person/personGridForm.json"),
   require("./Forms/Person/personCreatForm.json"),
+  require("./Forms/Person/personShowForm.json"),
   //ApplicationsForASP forms
   require("./Forms/ApplicationsForASP/Application.json"),
   require("./Forms/ApplicationsForASP/ApplicationState.json"),

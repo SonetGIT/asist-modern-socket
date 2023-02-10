@@ -84,6 +84,62 @@
         "id": "Id",
         "label": ["Text"]
       }
+    },
+    "8C5E9217-59AC-4B4E-A41A-643FC34444E4": {
+      "data": {
+        "id": "Id",
+        "label": ["Text"]
+      }
+    },
+    "4D029337-C025-442E-8E93-AFD1852073AC": {
+      "data": {
+        "id": "Id",
+        "label": ["Text"]
+      }
+    },
+    "967D525D-9B76-44BE-93FA-BD4639EA515A": {
+      "data": {
+        "id": "Id",
+        "label": ["Text"],
+        "districtId": ["districtId"]
+      }
+    },
+    "B70BAD68-7532-471F-A705-364FD5F1BA9E": {
+      "data": {
+        "id": "Id",
+        "label": ["Text"],
+        "settlementId": ["settlementId"]
+      }
+    },
+    "984CDE63-F402-4834-A3BE-10B996FF36F1": {
+      "data": {
+        "id": "Id",
+        "label": ["Text"]
+      }
+    },
+    "02107F45-6230-4153-835B-6611D2A8BFEC": {
+      "data": {
+        "id": "Id",
+        "label": ["Text"]
+      }
+    },
+    "903E4BA3-4A68-4992-A32A-3C0BEA8ECB95": {
+      "data": {
+        "id": "Id",
+        "label": ["Text"]
+      }
+    },
+    "6220E90B-9486-4D64-842C-368CA46FAFD5": {
+      "data": {
+        "id": "Id",
+        "label": ["Text"]
+      }
+    },
+    "6740ACAB-62B3-4AD2-A259-2A34067FACE1": {
+      "data": {
+        "id": "Id",
+        "label": ["Text"]
+      }
     }
   }
 }

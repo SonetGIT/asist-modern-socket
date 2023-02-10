@@ -5,9 +5,200 @@
   "sections": [
     {
       "type": "Section",
+      "name": "ApplicationData",
+      "label": "Заявление на АСП",
+      "contents": [
+        {
+          "type": "Text",
+          "name": "No",
+          "label": "Номер заявления",
+          "edit": false,
+          "show": true,
+          "required": true
+        },
+        {
+          "type": "DateTime",
+          "name": "Date",
+          "label": "Дата регистрации в сист-е",
+          "edit": false,
+          "show": true,
+          "required": true
+        },
+        {
+          "type": "DateTime",
+          "name": "ApplicationDate",
+          "label": "Дата подачи заявления",
+          "edit": false,
+          "show": true,
+          "required": true
+        },
+        {
+          "type": "Bool",
+          "name": "forVerification",
+          "label": "На верификацию",
+          "edit": true,
+          "show": true,
+          "required": false
+        }
+      ]
+    },
+    {
+      "type": "Doc",
+      "name": "PersonData",
+      "label": "Гражданин",
+      "contents": [
+        {
+          "type": "Text",
+          "name": "IIN",
+          "label": "ПИН",
+          "edit": false,
+          "show": true,
+          "required": false
+        },
+        {
+          "type": "Text",
+          "name": "SIN",
+          "label": "СИН",
+          "edit": false,
+          "show": true,
+          "required": false
+        },
+        {
+          "type": "Text",
+          "name": "Last_Name",
+          "label": "Фамилия",
+          "edit": false,
+          "show": true,
+          "required": false
+        },
+        {
+          "type": "Text",
+          "name": "First_Name",
+          "label": "Имя",
+          "edit": false,
+          "show": true,
+          "required": false
+        },
+        {
+          "type": "Text",
+          "name": "Middle_Name",
+          "label": "Отчество",
+          "edit": false,
+          "show": true,
+          "required": false
+        },
+        {
+          "type": "DateTime",
+          "name": "Date_of_Birth",
+          "label": "Дата рождения",
+
+          "edit": false,
+          "show": true,
+          "required": true
+        },
+        {
+          "type": "Enum",
+          "name": "Sex",
+          "label": "Пол",
+          "enumDef": "C780CE23-AC09-4CC3-8147-7779F6D80B65",
+          "edit": false,
+          "show": true,
+          "required": true
+        },
+        {
+          "type": "Enum",
+          "name": "FamilyState",
+          "label": "Семейное положение",
+          "enumDef": "6E4930EA-895F-4709-9511-F415FFF4C506",
+          "edit": false,
+          "show": true,
+          "required": true
+        },
+        {
+          "type": "Enum",
+          "name": "PassportType",
+          "label": "Типы документа",
+          "enumDef": "639C4A54-CDC2-4752-B9BC-210A775A4613",
+          "edit": false,
+          "show": true,
+          "required": true
+        },
+        {
+          "type": "Text",
+          "name": "PassportSeries",
+          "label": "Серия",
+          "edit": false,
+          "show": true,
+          "required": false
+        },
+        {
+          "type": "Text",
+          "name": "PassportNo",
+          "label": "Номер",
+          "edit": false,
+          "show": true,
+          "required": false
+        },
+        {
+          "type": "Text",
+          "name": "Issuing_Authority",
+          "label": "Выдавший орган",
+          "edit": false,
+          "show": true,
+          "required": false
+        },
+        {
+          "type": "DateTime",
+          "name": "Date_of_Issue",
+          "label": "Дата выдачи",
+          "apiName": null,
+          "edit": false,
+          "show": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "type": "Section",
       "name": "Application_State",
       "label": "Адресные данные заявителя",
       "contents": [
+        {
+          "type": "Enum",
+          "name": "RegionId",
+          "label": "Область",
+          "enumDef": "8C5E9217-59AC-4B4E-A41A-643FC34444E4",
+          "edit": true,
+          "show": true,
+          "required": true
+        },
+        {
+          "type": "Enum",
+          "name": "DistrictId",
+          "label": "Район/Город",
+          "enumDef": "4D029337-C025-442E-8E93-AFD1852073AC",
+          "edit": true,
+          "show": true,
+          "required": true
+        },
+        {
+          "type": "Enum",
+          "name": "DjamoatId",
+          "label": "Джамоат",
+          "enumDef": "967D525D-9B76-44BE-93FA-BD4639EA515A",
+          "edit": true,
+          "show": true,
+          "required": true
+        },
+        {
+          "type": "Enum",
+          "name": "VillageId",
+          "label": "Село",
+          "enumDef": "B70BAD68-7532-471F-A705-364FD5F1BA9E",
+          "edit": true,
+          "show": true,
+          "required": true
+        },
         {
           "type": "Text",
           "name": "street",
@@ -176,9 +367,10 @@
       "label": "2. Информация о главе домохозяйства",
       "contents": [
         {
-          "type": "Int",
+          "type": "Enum",
           "name": "education",
           "label": "Образование главы домохозяйства",
+          "enumDef": "984CDE63-F402-4834-A3BE-10B996FF36F1",
           "edit": true,
           "show": true,
           "required": false
@@ -548,19 +740,48 @@
           "edit": true,
           "show": true,
           "required": false
-        }
-      ]
-    },
-    {
-      "type": "Section",
-      "name": "",
-      "label": "",
-      "contents": [
+        },
         {
           "type": "Enum",
           "name": "DrinkingWaterSource",
           "label": "Что является основным источником питьевого водоснабжения Вашего жилья?",
           "enumDef": "5686B06B-1CFA-4D59-AA57-1E1BC92DCAFA",
+          "edit": true,
+          "show": true,
+          "required": false
+        },
+        {
+          "type": "Enum",
+          "name": "roof_material",
+          "label": "Какой основной строительный материал пола?",
+          "enumDef": "903E4BA3-4A68-4992-A32A-3C0BEA8ECB95",
+          "edit": true,
+          "show": true,
+          "required": false
+        },
+        {
+          "type": "Enum",
+          "name": "floor",
+          "label": "Какой основной строительный материал крыши?",
+          "enumDef": "02107F45-6230-4153-835B-6611D2A8BFEC",
+          "edit": true,
+          "show": true,
+          "required": false
+        },
+        {
+          "type": "Enum",
+          "name": "fence",
+          "label": "Какой материал забора?",
+          "enumDef": "6220E90B-9486-4D64-842C-368CA46FAFD5",
+          "edit": true,
+          "show": true,
+          "required": false
+        },
+        {
+          "type": "Enum",
+          "name": "foundation",
+          "label": "Материал фундамента",
+          "enumDef": "6740ACAB-62B3-4AD2-A259-2A34067FACE1",
           "edit": true,
           "show": true,
           "required": false

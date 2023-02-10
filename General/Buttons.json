@@ -21,50 +21,30 @@
         "label": "Отмена"
       }
     ],
-    "SearchUserButtons": [
+    "PersonBackButtons": [
       {
-        "name": "findUser",
-        "label": "Найти"
-      },
+        "name": "back",
+        "label": "Назад"
+      }
+    ],
+    "ApplicationButtons": [
       {
-        "name": "createUser",
-        "label": "Создать"
+        "name": "next",
+        "label": "Далее"
       },
       {
         "name": "cancel",
-        "label": "Закрыть"
+        "label": "Отмена"
       }
     ],
-    "CreateUserButtons": [
+    "AppStateButtons": [
       {
-        "name": "saveUser",
+        "name": "saveDocument",
         "label": "Сохранить"
       },
       {
-        "name": "back",
-        "label": "Назад"
-      }
-    ],
-    "EditUserButtons": [
-      {
-        "name": "updateUser",
-        "label": "Сохранить"
-      },
-      {
-        "name": "resetPassword",
-        "label": "Сбросить пароль"
-      },
-      {
-        "name": "disableUser",
-        "label": "Заблокировать"
-      },
-      {
-        "name": "enableUser",
-        "label": "Разблокировать"
-      },
-      {
-        "name": "back",
-        "label": "Назад"
+        "name": "cancel",
+        "label": "Отмена"
       }
     ],
     "CloseMonthCreateButtons": [
@@ -147,6 +127,52 @@
       {
         "name": "cancel",
         "label": "Отмена"
+      }
+    ],
+    "SearchUserButtons": [
+      {
+        "name": "findUser",
+        "label": "Найти"
+      },
+      {
+        "name": "createUser",
+        "label": "Создать"
+      },
+      {
+        "name": "cancel",
+        "label": "Закрыть"
+      }
+    ],
+    "CreateUserButtons": [
+      {
+        "name": "saveUser",
+        "label": "Сохранить"
+      },
+      {
+        "name": "back",
+        "label": "Назад"
+      }
+    ],
+    "EditUserButtons": [
+      {
+        "name": "updateUser",
+        "label": "Сохранить"
+      },
+      {
+        "name": "resetPassword",
+        "label": "Сбросить пароль"
+      },
+      {
+        "name": "disableUser",
+        "label": "Заблокировать"
+      },
+      {
+        "name": "enableUser",
+        "label": "Разблокировать"
+      },
+      {
+        "name": "back",
+        "label": "Назад"
       }
     ]
   }

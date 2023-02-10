@@ -112,6 +112,9 @@ async function restoreSession(userId, session_id, userRole) {
         ) {
           message = JSON.parse(task.taskVariables.value);
           await sendPersonForm(message, camundaTaskList[i].id, true);
+        } else if (taskType === "showAppStateForm") {
+          message = JSON.parse(task.taskVariables.value);
+          await sendAppStateForm(message, camundaTaskList[i].id, true);
         } else if (
           taskType === "showSearchUser" ||
           taskType === "showCreateUser" ||
@@ -430,6 +433,7 @@ async function sendPersonForm(message, taskID, restore) {
   let personForm = JSON.parse(JSON.parse(message.form));
   let gridForm = null;
   let gridFormButtons = null;
+  let tableFormButtons = null;
   let gridFormEnumData = null;
   if (message.gridForm !== "null") {
     gridForm = JSON.parse(JSON.parse(message.gridForm));
@@ -479,6 +483,65 @@ async function sendPersonForm(message, taskID, restore) {
     totalCount: message.totalCount,
   };
   console.log("Sending User Form", mes);
+  await sendMessage(mes);
+}
+// Collect data related to PersonForm form and send to client
+async function sendAppStateForm(message, taskID, restore) {
+  console.log("MESS sendAppStateForm", message);
+  // let form = eval(message.form)
+  let appStateForm = JSON.parse(JSON.parse(message.form));
+  let gridForm = null;
+  let gridFormButtons = null;
+  let tableFormButtons = null;
+  let gridFormEnumData = null;
+  if (message.gridForm !== "null") {
+    gridForm = JSON.parse(JSON.parse(message.gridForm));
+    gridFormButtons =
+      GridFormButtons[ConfigurationFile.rolesConfig[message.userRole]][
+        message.gridFormButtons
+      ];
+    gridFormEnumData = await getEnumData(gridForm);
+  }
+  // console.log("FORM", userForm)
+  let buttons =
+    Buttons[ConfigurationFile.rolesConfig[message.userRole]][message.buttons];
+  tableFormButtons =
+    TableFormButtons[ConfigurationFile.rolesConfig[message.userRole]][
+      message.tableFormButtons
+    ];
+
+  var enumData = await getEnumData(appStateForm);
+
+  var messageType = "userTask";
+  if (restore === true) {
+    messageType = "restoreTab";
+  }
+  // message.messageType = messageType
+  // message.enumData = enumData
+  let mes = {
+    userId: message.userId,
+    messageType: messageType,
+    taskType: message.taskType,
+    enumData: enumData,
+    gridFormEnumData: gridFormEnumData,
+    Form: appStateForm,
+    selectedDoc: message.selectedDoc,
+    gridForm: gridForm,
+    docList: message.docList,
+    size: message.size,
+    page: message.page,
+    formType: message.formType,
+    gridFormButtons: gridFormButtons,
+    tableFormButtons: tableFormButtons,
+    buttons: buttons,
+    taskID: taskID,
+    docId: message.docId,
+    session_id: message.session_id,
+    process_id: message.process_id,
+    tabLabel: message.tabLabel,
+    totalCount: message.totalCount,
+  };
+  console.log("sendAppStateForm", mes);
   await sendMessage(mes);
 }
 // Collect data related to CloseMonth form and send to client
@@ -1338,9 +1401,11 @@ async function sendRabbitMessage(msg) {
     taskType === "showPersonSearchForm" ||
     taskType === "showPersonCreatForm" ||
     taskType === "showPersonFilterForm" ||
-    taskType === "showPersonOpenFrom"
+    taskType === "showPersonOpenForm"
   ) {
     await sendPersonForm(taskVariables, message.taskID);
+  } else if (taskType === "showAppStateForm") {
+    await sendAppStateForm(taskVariables, message.taskID);
   } else if (
     taskType === "showCloseMonthCreateParamForm" ||
     taskType === "showCloseMonthSearchParamForm" ||
