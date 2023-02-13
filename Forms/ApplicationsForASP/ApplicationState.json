@@ -1,36 +1,36 @@
 {
   "formName": "Application_State",
-  "defid": "547BBA55-2281-4388-A1FC-EE890168AC2D",
+  "defid": "547bba55-2281-4388-a1fc-ee890168ac2d",
   "label": "Анкета домохозяйства",
   "sections": [
     {
       "type": "Section",
-      "name": "ApplicationData",
+      "name": "Application",
       "label": "Заявление на АСП",
       "contents": [
         {
           "type": "Text",
           "name": "No",
           "label": "Номер заявления",
-          "edit": false,
+          "edit": true,
           "show": true,
-          "required": true
+          "required": false
         },
         {
           "type": "DateTime",
           "name": "Date",
           "label": "Дата регистрации в сист-е",
-          "edit": false,
+          "edit": true,
           "show": true,
-          "required": true
+          "required": false
         },
         {
           "type": "DateTime",
           "name": "ApplicationDate",
           "label": "Дата подачи заявления",
-          "edit": false,
+          "edit": true,
           "show": true,
-          "required": true
+          "required": false
         },
         {
           "type": "Bool",
@@ -226,7 +226,7 @@
         {
           "type": "Text",
           "name": "Number_h",
-          "label": "Телефон сотовый",
+          "label": "Тел. сотовый",
           "edit": true,
           "show": true,
           "required": false
@@ -234,7 +234,7 @@
         {
           "type": "Text",
           "name": "Number_c",
-          "label": "Телефон домашний",
+          "label": "Тел. домашний",
           "edit": true,
           "show": true,
           "required": false
@@ -658,7 +658,7 @@
         {
           "type": "Bool",
           "name": "UseServiceOfHomePhone",
-          "label": "Телефон (домашний)",
+          "label": "Тел. домашний",
           "edit": true,
           "show": true,
           "required": true

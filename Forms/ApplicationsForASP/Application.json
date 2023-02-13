@@ -5,7 +5,7 @@
   "sections": [
     {
       "type": "Section",
-      "name": "ApplicationData",
+      "name": "Application",
       "label": "Заявление на АСП",
       "contents": [
         {
@@ -14,7 +14,7 @@
           "label": "Номер заявления",
           "edit": true,
           "show": true,
-          "required": true
+          "required": false
         },
         {
           "type": "DateTime",
@@ -22,7 +22,7 @@
           "label": "Дата регистрации в сист-е",
           "edit": true,
           "show": true,
-          "required": true
+          "required": false
         },
         {
           "type": "DateTime",
@@ -30,7 +30,7 @@
           "label": "Дата подачи заявления",
           "edit": true,
           "show": true,
-          "required": true
+          "required": false
         },
         {
           "type": "Bool",

@@ -94,7 +94,8 @@
     "4D029337-C025-442E-8E93-AFD1852073AC": {
       "data": {
         "id": "Id",
-        "label": ["Text"]
+        "label": ["Text"],
+        "regionId": ["regionId"]
       }
     },
     "967D525D-9B76-44BE-93FA-BD4639EA515A": {
