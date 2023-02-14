@@ -12,6 +12,11 @@ const formsToInsert = [
   //ApplicationsForASP forms
   require("./Forms/ApplicationsForASP/Application.json"),
   require("./Forms/ApplicationsForASP/ApplicationState.json"),
+  require("./Forms/ApplicationsForASP/ApplicationsGridForm.json"),
+  require("./Forms/ApplicationsForASP/ApplicationsSearchForm.json"),
+  require("./Forms/ApplicationsForASP/FamilyMemberGridForm.json"),
+  require("./Forms/ApplicationsForASP/IncomeGridForm.json"),
+  require("./Forms/ApplicationsForASP/LandPlotGridForm.json"),
   //PaymentsDepartment forms
   require("./Forms/PaymentsDepartment/closeMonthCreateParamForm.json"),
   require("./Forms/PaymentsDepartment/closeMonthSearchParamForm.json"),

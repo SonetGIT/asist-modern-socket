@@ -11,7 +11,7 @@
         {
           "type": "Text",
           "name": "No",
-          "label": "Номер ресстра",
+          "label": "№ ресстра",
           "edit": false,
           "show": true,
           "required": false

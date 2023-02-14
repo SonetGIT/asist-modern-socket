@@ -1,12 +1,12 @@
 {
-  "formName": "ApplicationDetailedForm",
-  "defid": "4f9f2ae2-7180-4850-a3f4-5fb47313bcc0",
-  "label": "Заявление на АСП",
+  "formName": "ApplicationsGridForm",
+  "defid": "3cfe159a-e59c-4788-88d1-0a91971a6841",
+  "label": "Список заявлений на АСП",
   "sections": [
     {
       "type": "Section",
-      "name": "Application",
-      "label": "Заявление на АСП",
+      "name": "Applications",
+      "label": "Список заявлений на АСП",
       "contents": [
         {
           "type": "Text",
@@ -25,17 +25,25 @@
           "required": false
         },
         {
-          "type": "DateTime",
-          "name": "ApplicationDate",
-          "label": "Дата подачи заявления",
+          "type": "Float",
+          "name": "BALL",
+          "label": "КОН",
+          "edit": false,
+          "show": true,
+          "required": false
+        },
+        {
+          "type": "Float",
+          "name": "BALLNew",
+          "label": "БАЛЛ (новый)",
           "edit": true,
           "show": true,
           "required": false
         },
         {
-          "type": "Bool",
-          "name": "forVerification",
-          "label": "На верификацию",
+          "type": "Float",
+          "name": "LimitAcceptance",
+          "label": "Порог прохождения",
           "edit": true,
           "show": true,
           "required": false
@@ -51,14 +59,6 @@
           "type": "Text",
           "name": "IIN",
           "label": "ПИН",
-          "edit": false,
-          "show": true,
-          "required": false
-        },
-        {
-          "type": "Text",
-          "name": "SIN",
-          "label": "СИН",
           "edit": false,
           "show": true,
           "required": false
@@ -105,24 +105,6 @@
           "required": true
         },
         {
-          "type": "Enum",
-          "name": "FamilyState",
-          "label": "Семейное положение",
-          "enumDef": "6E4930EA-895F-4709-9511-F415FFF4C506",
-          "edit": false,
-          "show": true,
-          "required": true
-        },
-        {
-          "type": "Enum",
-          "name": "PassportType",
-          "label": "Типы документа",
-          "enumDef": "639C4A54-CDC2-4752-B9BC-210A775A4613",
-          "edit": false,
-          "show": true,
-          "required": true
-        },
-        {
           "type": "Text",
           "name": "PassportSeries",
           "label": "Серия",
@@ -137,23 +119,45 @@
           "edit": false,
           "show": true,
           "required": false
-        },
+        }
+      ]
+    },
+    {
+      "type": "Doc",
+      "name": "ApplicationState",
+      "label": "Адрес",
+      "contents": [
         {
           "type": "Text",
-          "name": "Issuing_Authority",
-          "label": "Выдавший орган",
+          "name": "street",
+          "label": "Улица",
           "edit": false,
           "show": true,
           "required": false
         },
         {
-          "type": "DateTime",
-          "name": "Date_of_Issue",
-          "label": "Дата выдачи",
-          "apiName": null,
+          "type": "Text",
+          "name": "House",
+          "label": "Дом",
           "edit": false,
           "show": true,
-          "required": true
+          "required": false
+        },
+        {
+          "type": "Text",
+          "name": "flat",
+          "label": "Квартира",
+          "edit": false,
+          "show": true,
+          "required": false
+        },
+        {
+          "type": "Text",
+          "name": "Status",
+          "label": "Статус",
+          "edit": false,
+          "show": true,
+          "required": false
         }
       ]
     }

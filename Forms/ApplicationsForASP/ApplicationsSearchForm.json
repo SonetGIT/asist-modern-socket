@@ -1,129 +1,126 @@
 {
-  "formName": "searchPersonForm",
-  "defid": "ad4c0915-086c-4f08-b659-4012849cacba",
-  "label": "Форма поиска гражданина",
+  "formName": "ApplicationsSearchForm",
+  "defid": "73322bb1-657a-4ecb-a93c-ff45583ad29d",
+  "label": "Форма поиска заявлений",
   "sections": [
     {
       "type": "Section",
+      "name": "ApplicationSearch",
+      "label": "Форма поиска заявлений",
+      "contents": [
+        {
+          "type": "Text",
+          "name": "No",
+          "label": "№ заявления",
+          "edit": true,
+          "show": true,
+          "required": false
+        },
+        {
+          "type": "DateTime",
+          "name": "Date",
+          "label": "Дата регистрации в сист-е",
+          "edit": true,
+          "show": true,
+          "required": false
+        },
+        {
+          "type": "DateTime",
+          "name": "ApplicationDate",
+          "label": "Дата подачи заявления",
+          "edit": true,
+          "show": true,
+          "required": false
+        }
+      ]
+    },
+    {
+      "type": "Doc",
       "name": "PersonData",
-      "label": "Форма поиска гражданина",
+      "label": "Гражданин",
       "contents": [
         {
           "type": "Text",
           "name": "IIN",
           "label": "ПИН",
-          "edit": true,
+          "edit": false,
           "show": true,
-          "required": false,
-          "searchable": true
-        },
-        {
-          "type": "Text",
-          "name": "SIN",
-          "label": "СИН",
-          "edit": true,
-          "show": true,
-          "required": false,
-          "searchable": true
+          "required": false
         },
         {
           "type": "Text",
           "name": "Last_Name",
           "label": "Фамилия",
-          "edit": true,
+          "edit": false,
           "show": true,
-          "required": false,
-          "searchable": true
+          "required": false
         },
         {
           "type": "Text",
           "name": "First_Name",
           "label": "Имя",
-          "edit": true,
+          "edit": false,
           "show": true,
-          "required": false,
-          "searchable": true
+          "required": false
         },
         {
           "type": "Text",
           "name": "Middle_Name",
           "label": "Отчество",
-          "edit": true,
+          "edit": false,
           "show": true,
-          "required": false,
-          "searchable": true
+          "required": false
         },
         {
           "type": "DateTime",
           "name": "Date_of_Birth",
           "label": "Дата рождения",
-          "edit": true,
+          "edit": false,
           "show": true,
-          "required": true,
-          "searchable": true
+          "required": true
         },
         {
           "type": "Enum",
           "name": "Sex",
           "label": "Пол",
           "enumDef": "C780CE23-AC09-4CC3-8147-7779F6D80B65",
-          "edit": true,
+          "edit": false,
           "show": true,
-          "searchable": true
+          "required": true
         },
         {
           "type": "Enum",
           "name": "FamilyState",
           "label": "Семейное положение",
           "enumDef": "6E4930EA-895F-4709-9511-F415FFF4C506",
-          "edit": true,
+          "edit": false,
           "show": true,
-          "searchable": true
+          "required": true
         },
         {
           "type": "Enum",
           "name": "PassportType",
           "label": "Типы документа",
           "enumDef": "639C4A54-CDC2-4752-B9BC-210A775A4613",
-          "edit": true,
+          "edit": false,
           "show": true,
-          "searchable": true
+          "required": true
         },
         {
           "type": "Text",
           "name": "PassportSeries",
           "label": "Серия",
-          "edit": true,
+          "edit": false,
           "show": true,
-          "required": false,
-          "searchable": true
+          "required": false
         },
         {
           "type": "Text",
           "name": "PassportNo",
           "label": "№",
-          "edit": true,
+          "edit": false,
           "show": true,
-          "required": false,
-          "searchable": true
-        },
-        {
-          "type": "Text",
-          "name": "Issuing_Authority",
-          "label": "Выдавший орган",
-          "edit": true,
-          "show": true,
-          "required": false,
-          "searchable": true
-        },
-        {
-          "type": "DateTime",
-          "name": "Date_of_Issue",
-          "label": "Дата выдачи",
-          "edit": true,
-          "show": true,
-          "required": true,
-          "searchable": true
+          "required": false
         }
       ]
     }

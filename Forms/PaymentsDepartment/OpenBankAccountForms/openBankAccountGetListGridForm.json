@@ -11,10 +11,10 @@
         {
           "type": "Text",
           "name": "No",
-          "label": "Номер",
+          "label": "№",
           "edit": true,
           "show": true,
-          "required": false       
+          "required": false
         },
         {
           "type": "DateTime",

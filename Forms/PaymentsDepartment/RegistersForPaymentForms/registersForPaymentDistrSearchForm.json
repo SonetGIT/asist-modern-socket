@@ -11,7 +11,7 @@
         {
           "type": "Text",
           "name": "No",
-          "label": "Номер",
+          "label": "№",
           "edit": false,
           "show": true,
           "required": false,

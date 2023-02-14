@@ -115,6 +115,9 @@ async function restoreSession(userId, session_id, userRole) {
         } else if (taskType === "showAppStateForm") {
           message = JSON.parse(task.taskVariables.value);
           await sendAppStateForm(message, camundaTaskList[i].id, true);
+        } else if (taskType === "showApplicationsGridForm") {
+          message = JSON.parse(task.taskVariables.value);
+          await sendApplicationsGridForm(message, camundaTaskList[i].id, true);
         } else if (
           taskType === "showSearchUser" ||
           taskType === "showCreateUser" ||
@@ -542,6 +545,56 @@ async function sendAppStateForm(message, taskID, restore) {
     totalCount: message.totalCount,
   };
   console.log("sendAppStateForm", mes);
+  await sendMessage(mes);
+}
+//Список заявлений на АСП по статусу
+async function sendApplicationsGridForm(message, taskID, restore) {
+  console.log("MESS", message);
+  let appsSearchForm = JSON.parse(JSON.parse(message.form));
+  let gridForm = null;
+  let gridFormButtons = null;
+  let tableFormButtons = null;
+  if (message.gridForm !== "null") {
+    gridForm = JSON.parse(JSON.parse(message.gridForm));
+    gridFormButtons =
+      GridFormButtons[ConfigurationFile.rolesConfig[message.userRole]][
+        message.gridFormButtons
+      ];
+    tableFormButtons =
+      TableFormButtons[ConfigurationFile.rolesConfig[message.userRole]][
+        message.tableFormButtons
+      ];
+  }
+  let buttons =
+    Buttons[ConfigurationFile.rolesConfig[message.userRole]][message.buttons];
+  var enumData = await getEnumData(appsSearchForm);
+  var messageType = "userTask";
+  if (restore === true) {
+    messageType = "restoreTab";
+  }
+  let mes = {
+    userId: message.userId,
+    messageType: messageType,
+    taskType: message.taskType,
+    enumData: enumData,
+    Form: appsSearchForm,
+    selectedDoc: message.selectedDoc,
+    gridForm: gridForm,
+    docList: message.docList,
+    size: message.size,
+    page: message.page,
+    formType: message.formType,
+    gridFormButtons: gridFormButtons,
+    buttons: buttons,
+    tableFormButtons: tableFormButtons,
+    taskID: taskID,
+    docId: message.docId,
+    session_id: message.session_id,
+    process_id: message.process_id,
+    tabLabel: message.tabLabel,
+    //totalCount: message.totalCount,
+  };
+  console.log("Sending uploadForms Form");
   await sendMessage(mes);
 }
 // Collect data related to CloseMonth form and send to client
@@ -1406,6 +1459,8 @@ async function sendRabbitMessage(msg) {
     await sendPersonForm(taskVariables, message.taskID);
   } else if (taskType === "showAppStateForm") {
     await sendAppStateForm(taskVariables, message.taskID);
+  } else if (taskType === "showApplicationsGridForm") {
+    await sendApplicationsGridForm(taskVariables, message.taskID);
   } else if (
     taskType === "showCloseMonthCreateParamForm" ||
     taskType === "showCloseMonthSearchParamForm" ||

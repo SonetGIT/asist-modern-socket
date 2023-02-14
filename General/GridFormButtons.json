@@ -19,6 +19,16 @@
         "marginBottom": 13
       }
     ],
+    "ApplicationsGridForm": [
+      {
+        "name": "openApp",
+        "label": "Открыть",
+        "backgroundColor": "#4F7AAE",
+        "color": "white",
+        "marginTop": 15,
+        "marginBottom": 13
+      }
+    ],
     "CloseMonthGridFormButtons": [
       {
         "name": "open",

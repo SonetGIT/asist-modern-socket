@@ -94,7 +94,7 @@
         {
           "type": "Text",
           "name": "PassportNo",
-          "label": "Номер",
+          "label": "№",
           "edit": true,
           "show": true,
           "required": false
