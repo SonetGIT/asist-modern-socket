@@ -329,6 +329,38 @@ async function getEnumValues(apiName, enumName, enumDef) {
   // console.log("newEnumValues", newEnumValues)
   return newEnumValues;
 }
+async function getSubDocuments(selectedDoc, form, userId) {
+  let subDocuments = {};
+  let selDoc = JSON.parse(selectedDoc);
+  for (let i = 0; i < selDoc.attributes.length; i++) {
+    if (selDoc.attributes[i].type === "Doc") {
+      for (let s = 0; s < form.sections.length; s++) {
+        if (
+          form.sections[s].type === "Doc" &&
+          selDoc.attributes[i].name === form.sections[s].name
+        ) {
+          await request({
+            headers: { "content-type": "application/json" },
+            url:
+              asistRESTApi +
+              "/ASIST-MODERN-API/api/Document/GetDocumentById/" +
+              selDoc.attributes[i].value +
+              "?userId=" +
+              userId,
+            json: true,
+            method: "GET",
+          })
+            .then(async function (response) {
+              console.log("RES: ", response);
+              subDocuments[selDoc.attributes[i].name] = response;
+            })
+            .catch(function (error) {});
+        }
+      }
+    }
+  }
+  return subDocuments;
+}
 //***System main tasks functions***
 async function sendInstructionsForm(session_id, message, restore) {
   let gridForm = null;
@@ -491,6 +523,7 @@ async function sendPersonForm(message, taskID, restore) {
 // Collect data related to PersonForm form and send to client
 async function sendAppStateForm(message, taskID, restore) {
   console.log("MESS sendAppStateForm", message);
+  let subDocuments = null;
   // let form = eval(message.form)
   let appStateForm = JSON.parse(JSON.parse(message.form));
   let gridForm = null;
@@ -504,6 +537,13 @@ async function sendAppStateForm(message, taskID, restore) {
         message.gridFormButtons
       ];
     gridFormEnumData = await getEnumData(gridForm);
+  }
+  if (message.selectedDoc !== "null") {
+    subDocuments = await getSubDocuments(
+      message.selectedDoc,
+      appStateForm,
+      message.userId
+    );
   }
   // console.log("FORM", userForm)
   let buttons =
@@ -529,6 +569,7 @@ async function sendAppStateForm(message, taskID, restore) {
     gridFormEnumData: gridFormEnumData,
     Form: appStateForm,
     selectedDoc: message.selectedDoc,
+    subDocuments: subDocuments,
     gridForm: gridForm,
     docList: message.docList,
     size: message.size,

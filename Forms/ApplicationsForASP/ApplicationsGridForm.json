@@ -6,7 +6,7 @@
     {
       "type": "Section",
       "name": "Applications",
-      "label": "Список заявлений на АСП",
+      "label": "Данные",
       "contents": [
         {
           "type": "Text",
