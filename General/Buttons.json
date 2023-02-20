@@ -39,7 +39,7 @@
     ],
     "AppStateButtons": [
       {
-        "name": "saveDocument",
+        "name": "saveAppStateDoc",
         "label": "Сохранить"
       },
       {

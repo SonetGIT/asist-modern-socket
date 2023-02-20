@@ -4,7 +4,7 @@
   "label": "Анкета домохозяйства",
   "sections": [
     {
-      "type": "Section",
+      "type": "Doc",
       "name": "Application",
       "label": "Заявление на АСП",
       "contents": [
@@ -44,7 +44,7 @@
     },
     {
       "type": "Doc",
-      "name": "PersonData",
+      "name": "Person",
       "label": "Гражданин",
       "contents": [
         {
@@ -895,7 +895,7 @@
     },
     {
       "type": "Section",
-      "name": "",
+      "name": "Detail",
       "label": "",
       "contents": [
         {

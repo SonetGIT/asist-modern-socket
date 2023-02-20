@@ -5,7 +5,7 @@
   "sections": [
     {
       "type": "Section",
-      "name": "Applications",
+      "name": "Application",
       "label": "Данные",
       "contents": [
         {
@@ -51,8 +51,8 @@
       ]
     },
     {
-      "type": "Doc",
-      "name": "PersonData",
+      "type": "Section",
+      "name": "Person",
       "label": "Гражданин",
       "contents": [
         {
@@ -123,8 +123,8 @@
       ]
     },
     {
-      "type": "Doc",
-      "name": "ApplicationState",
+      "type": "Section",
+      "name": "Application_State",
       "label": "Адрес",
       "contents": [
         {

@@ -112,7 +112,10 @@ async function restoreSession(userId, session_id, userRole) {
         ) {
           message = JSON.parse(task.taskVariables.value);
           await sendPersonForm(message, camundaTaskList[i].id, true);
-        } else if (taskType === "showAppStateForm") {
+        } else if (
+          taskType === "showApplicationForm" ||
+          taskType === "showAppStateForm"
+        ) {
           message = JSON.parse(task.taskVariables.value);
           await sendAppStateForm(message, camundaTaskList[i].id, true);
         } else if (taskType === "showApplicationsGridForm") {
@@ -191,6 +194,11 @@ async function restoreSession(userId, session_id, userRole) {
             camundaTaskList[i].id,
             true
           );
+        } else {
+          if (taskType === "showToast") {
+            let vars = { userAction: { value: "cancel" } };
+            await completeTask(vars, camundaTaskList[i].id);
+          }
         }
       }
     } catch (er) {
@@ -333,7 +341,10 @@ async function getSubDocuments(selectedDoc, form, userId) {
   let subDocuments = {};
   let selDoc = JSON.parse(selectedDoc);
   for (let i = 0; i < selDoc.attributes.length; i++) {
-    if (selDoc.attributes[i].type === "Doc") {
+    if (
+      selDoc.attributes[i].type === "Doc" &&
+      selDoc.attributes[i].value !== null
+    ) {
       for (let s = 0; s < form.sections.length; s++) {
         if (
           form.sections[s].type === "Doc" &&
@@ -524,7 +535,6 @@ async function sendPersonForm(message, taskID, restore) {
 async function sendAppStateForm(message, taskID, restore) {
   console.log("MESS sendAppStateForm", message);
   let subDocuments = null;
-  // let form = eval(message.form)
   let appStateForm = JSON.parse(JSON.parse(message.form));
   let gridForm = null;
   let gridFormButtons = null;
@@ -544,8 +554,11 @@ async function sendAppStateForm(message, taskID, restore) {
       appStateForm,
       message.userId
     );
+    if (message.taskType === "showAppStateForm") {
+      subDocuments.Application = JSON.parse(message.application);
+    }
   }
-  // console.log("FORM", userForm)
+  // // console.log("FORM", userForm)
   let buttons =
     Buttons[ConfigurationFile.rolesConfig[message.userRole]][message.buttons];
   tableFormButtons =
@@ -633,7 +646,7 @@ async function sendApplicationsGridForm(message, taskID, restore) {
     session_id: message.session_id,
     process_id: message.process_id,
     tabLabel: message.tabLabel,
-    //totalCount: message.totalCount,
+    totalCount: message.totalCount,
   };
   console.log("Sending uploadForms Form");
   await sendMessage(mes);
@@ -1184,22 +1197,22 @@ async function sendMessage(message) {
     }
   }
 }
-async function sendToast(message) {
-  console.log("TOAST", message);
+async function sendToast(message, taskID) {
+  console.log("TOAST", message, taskID);
   for (var key in clients) {
     if (clients[key].userId === message.userId) {
       session_id = clients[key].session_id;
       await clients[session_id].send(
         JSON.stringify({
           messageType: "toast",
-          toastText: message.selectedDoc,
-          toastType: message.formType,
+          toastText: message.toastText,
+          toastType: message.toastType,
         })
       );
       let vars = {
         userAction: { value: "cancel" },
       };
-      setTimeout(completeTask, 2000, vars, message.taskID);
+      setTimeout(completeTask, 2000, vars, taskID);
     }
   }
 }
@@ -1490,7 +1503,7 @@ async function sendRabbitMessage(msg) {
   } else if (taskType === "setRoleToUser") {
     await setRoleToUser(session_id, message);
   } else if (taskType === "showToast") {
-    await sendToast(message);
+    await sendToast(taskVariables, message.taskID);
   } else if (
     taskType === "showPersonSearchForm" ||
     taskType === "showPersonCreatForm" ||
@@ -1498,7 +1511,10 @@ async function sendRabbitMessage(msg) {
     taskType === "showPersonOpenForm"
   ) {
     await sendPersonForm(taskVariables, message.taskID);
-  } else if (taskType === "showAppStateForm") {
+  } else if (
+    taskType === "showApplicationForm" ||
+    taskType === "showAppStateForm"
+  ) {
     await sendAppStateForm(taskVariables, message.taskID);
   } else if (taskType === "showApplicationsGridForm") {
     await sendApplicationsGridForm(taskVariables, message.taskID);
@@ -1541,6 +1557,8 @@ async function sendRabbitMessage(msg) {
     taskType === "showRegForPayCreatDistrForm"
   ) {
     await sendCreateRegForPaymentForm(taskVariables, message.taskID);
+  } else if (taskType === "showToast") {
+    await sendToast(taskVariables, message.taskID);
   }
 }
 

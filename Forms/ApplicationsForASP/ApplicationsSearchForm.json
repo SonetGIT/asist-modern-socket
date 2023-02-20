@@ -5,7 +5,7 @@
   "sections": [
     {
       "type": "Section",
-      "name": "ApplicationSearch",
+      "name": "Application",
       "label": "Форма поиска заявлений",
       "contents": [
         {
@@ -35,7 +35,7 @@
       ]
     },
     {
-      "type": "Doc",
+      "type": "Section",
       "name": "Person",
       "label": "Гражданин",
       "contents": [
