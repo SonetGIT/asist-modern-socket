@@ -108,13 +108,15 @@ async function restoreSession(userId, session_id, userRole) {
           taskType === "showPersonSearchForm" ||
           taskType === "showPersonCreatForm" ||
           taskType === "showPersonFilterForm" ||
-          taskType === "showPersonOpenForm"
+          taskType === "showPersonOpenForm" ||
+          taskType === "showPersonSaveForm"
         ) {
           message = JSON.parse(task.taskVariables.value);
           await sendPersonForm(message, camundaTaskList[i].id, true);
         } else if (
           taskType === "showApplicationForm" ||
-          taskType === "showAppStateForm"
+          taskType === "showAppStateForm" ||
+          taskType === "showAppStateSaveForm"
         ) {
           message = JSON.parse(task.taskVariables.value);
           await sendAppStateForm(message, camundaTaskList[i].id, true);
@@ -1508,12 +1510,14 @@ async function sendRabbitMessage(msg) {
     taskType === "showPersonSearchForm" ||
     taskType === "showPersonCreatForm" ||
     taskType === "showPersonFilterForm" ||
-    taskType === "showPersonOpenForm"
+    taskType === "showPersonOpenForm" ||
+    taskType === "showPersonSaveForm"
   ) {
     await sendPersonForm(taskVariables, message.taskID);
   } else if (
     taskType === "showApplicationForm" ||
-    taskType === "showAppStateForm"
+    taskType === "showAppStateForm" ||
+    taskType === "showAppStateSaveForm"
   ) {
     await sendAppStateForm(taskVariables, message.taskID);
   } else if (taskType === "showApplicationsGridForm") {

@@ -14,6 +14,7 @@ const formsToInsert = [
   require("./Forms/ApplicationsForASP/ApplicationState.json"),
   require("./Forms/ApplicationsForASP/ApplicationsGridForm.json"),
   require("./Forms/ApplicationsForASP/ApplicationsSearchForm.json"),
+  require("./Forms/ApplicationsForASP/ApplicationStateShowForm.json"),
   require("./Forms/ApplicationsForASP/FamilyMemberGridForm.json"),
   require("./Forms/ApplicationsForASP/IncomeGridForm.json"),
   require("./Forms/ApplicationsForASP/LandPlotGridForm.json"),

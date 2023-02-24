@@ -1,10 +1,10 @@
 {
-  "formName": "Application_State",
-  "defid": "547bba55-2281-4388-a1fc-ee890168ac2d",
+  "formName": "ApplicationStateShowForm",
+  "defid": "888bba55-2281-4388-a1fc-ee890154ac7d",
   "label": "Анкета домохозяйства",
   "sections": [
     {
-      "type": "Doc",
+      "type": "Section",
       "name": "Application",
       "label": "Заявление на АСП",
       "contents": [
@@ -12,7 +12,7 @@
           "type": "Text",
           "name": "No",
           "label": "№ заявления",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": false
         },
@@ -20,7 +20,7 @@
           "type": "DateTime",
           "name": "Date",
           "label": "Дата регистрации в сист-е",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": false
         },
@@ -28,7 +28,7 @@
           "type": "DateTime",
           "name": "ApplicationDate",
           "label": "Дата подачи заявления",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": false
         },
@@ -36,7 +36,7 @@
           "type": "Bool",
           "name": "forVerification",
           "label": "На верификацию",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": false
         }
@@ -159,7 +159,7 @@
       ]
     },
     {
-      "type": "Section",
+      "type": "Doc",
       "name": "Application_State",
       "label": "Адресные данные заявителя",
       "contents": [
@@ -168,7 +168,7 @@
           "name": "RegionId",
           "label": "Область",
           "enumDef": "8C5E9217-59AC-4B4E-A41A-643FC34444E4",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": true
         },
@@ -177,7 +177,7 @@
           "name": "DistrictId",
           "label": "Район/Город",
           "enumDef": "4D029337-C025-442E-8E93-AFD1852073AC",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": true
         },
@@ -186,7 +186,7 @@
           "name": "DjamoatId",
           "label": "Джамоат",
           "enumDef": "967D525D-9B76-44BE-93FA-BD4639EA515A",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": true
         },
@@ -195,7 +195,7 @@
           "name": "VillageId",
           "label": "Село",
           "enumDef": "B70BAD68-7532-471F-A705-364FD5F1BA9E",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": true
         },
@@ -203,7 +203,7 @@
           "type": "Text",
           "name": "street",
           "label": "Улица",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": false
         },
@@ -211,7 +211,7 @@
           "type": "Text",
           "name": "House",
           "label": "Дом",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": false
         },
@@ -219,7 +219,7 @@
           "type": "Text",
           "name": "flat",
           "label": "Квартира",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": false
         },
@@ -227,7 +227,7 @@
           "type": "Text",
           "name": "Number_h",
           "label": "Тел. сотовый",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": false
         },
@@ -235,7 +235,7 @@
           "type": "Text",
           "name": "Number_c",
           "label": "Тел. домашний",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": false
         },
@@ -243,7 +243,7 @@
           "type": "Text",
           "name": "E_mail",
           "label": "E-mail",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": false
         }
@@ -346,7 +346,7 @@
           "name": "Disability",
           "label": "Инвалидность",
           "enumDef": "F38FC8F6-E925-434E-8DFC-EF8937A0BE9B",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": false
         },
@@ -355,7 +355,7 @@
           "name": "DisabilityGroupe",
           "label": "Группа",
           "enumDef": "37D69002-73CA-4507-9227-A57EA262B536",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": false
         }
@@ -371,7 +371,7 @@
           "name": "education",
           "label": "Образование главы домохозяйства",
           "enumDef": "984CDE63-F402-4834-A3BE-10B996FF36F1",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": false
         },
@@ -380,7 +380,7 @@
           "name": "employment",
           "label": "Род занятости главы домохозяйства за последние 3 месяца",
           "enumDef": "3E3E0163-23BD-4B9C-A118-3648283C1DE1",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": false
         }
@@ -395,7 +395,7 @@
           "type": "Int",
           "name": "CarAmount",
           "label": "Легковой автомобиль",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": false
         },
@@ -403,7 +403,7 @@
           "type": "Int",
           "name": "TruckAmount",
           "label": "Грузовик",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": false
         },
@@ -411,7 +411,7 @@
           "type": "Int",
           "name": "TractorAmount",
           "label": "Трактор",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": false
         },
@@ -419,7 +419,7 @@
           "type": "Int",
           "name": "BulldozerAmount",
           "label": "Бульдозер",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": false
         },
@@ -427,7 +427,7 @@
           "type": "Int",
           "name": "OtherSpecialEquipmentAmount",
           "label": "Другая спец-техника",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": false
         },
@@ -435,7 +435,7 @@
           "type": "Int",
           "name": "TVAmount",
           "label": "Телевизор",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": false
         },
@@ -443,7 +443,7 @@
           "type": "Int",
           "name": "ComputerAmount",
           "label": "Компьютер",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": false
         },
@@ -451,7 +451,7 @@
           "type": "Int",
           "name": "SatelliteDishAmount",
           "label": "Спутниковая антенна",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": false
         },
@@ -459,7 +459,7 @@
           "type": "Int",
           "name": "GeneratorAmount",
           "label": "Генератор",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": false
         },
@@ -467,7 +467,7 @@
           "type": "Int",
           "name": "RefrigeratorAmount",
           "label": "Холодильник",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": false
         },
@@ -475,7 +475,7 @@
           "type": "Int",
           "name": "ConditionerAmount",
           "label": "Кондиционер",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": false
         },
@@ -483,7 +483,7 @@
           "type": "Int",
           "name": "StoveAmount",
           "label": "Плита (газ, электр.)",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": false
         },
@@ -491,7 +491,7 @@
           "type": "Int",
           "name": "SewingMachineAmount",
           "label": "Швейная машина (электр./ручная/с педалью)",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": false
         },
@@ -499,7 +499,7 @@
           "type": "Int",
           "name": "HeaterAmount",
           "label": "Обогреватель (элект.)",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": false
         }
@@ -514,7 +514,7 @@
           "type": "Int",
           "name": "horse",
           "label": "Лошади",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": false
         },
@@ -522,7 +522,7 @@
           "type": "Int",
           "name": "cows",
           "label": "Коровы(буйволы, яки)",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": false
         },
@@ -530,7 +530,7 @@
           "type": "Int",
           "name": "sheep",
           "label": "Овцы",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": false
         },
@@ -538,7 +538,7 @@
           "type": "Int",
           "name": "goats",
           "label": "Козы",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": false
         },
@@ -546,7 +546,7 @@
           "type": "Int",
           "name": "donkeys",
           "label": "Осел/Ишак",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": false
         },
@@ -554,7 +554,7 @@
           "type": "Int",
           "name": "poultry",
           "label": "Домашняя птица",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": false
         },
@@ -562,7 +562,7 @@
           "type": "Int",
           "name": "Rabbits",
           "label": "Кролики",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": false
         },
@@ -570,7 +570,7 @@
           "type": "Int",
           "name": "Bee",
           "label": "Пчелы (кол-во ульев)",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": false
         }
@@ -586,7 +586,7 @@
           "name": "HasOtherHome",
           "label": "Есть ли в Вашем распоряжении другая недвижимость, пригодная к проживанию (а именно, другой дом, квартира, или дача) и находящаяся в собственности домохозяйства)?",
           "enumDef": "3A841108-EB67-40EA-AA07-AC0849237883",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": true
         },
@@ -595,7 +595,7 @@
           "name": "HasOtherBusinessBuilding",
           "label": "Есть ли в вашем распоряжении коммерческая недвижимость (а именно склад, магазин, гараж, мастерская, или торговая точка)",
           "enumDef": "3A841108-EB67-40EA-AA07-AC0849237883",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": true
         }
@@ -611,7 +611,7 @@
           "name": "Family_dwelling",
           "label": "Жилое помещение семьи",
           "enumDef": "3C9C6B02-F0CE-4E88-9D48-B47E09CAD8B8",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": true
         },
@@ -620,7 +620,7 @@
           "name": "HouseState",
           "label": "В каком состоянии жилое помещение?",
           "enumDef": "62F1128C-938B-4F79-9762-A12216ED5045",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": true
         },
@@ -628,7 +628,7 @@
           "type": "Int",
           "name": "living_space",
           "label": "Жилая площадь без кухни и коридора (кв.м.)",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": true
         },
@@ -636,7 +636,7 @@
           "type": "Int",
           "name": "Number_rooms",
           "label": "Количество комнат",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": false
         }
@@ -651,7 +651,7 @@
           "type": "Bool",
           "name": "UseServiceOdGarbageDispose",
           "label": "Вывоз мусора",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": true
         },
@@ -659,7 +659,7 @@
           "type": "Bool",
           "name": "UseServiceOfHomePhone",
           "label": "Тел. домашний",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": true
         },
@@ -667,7 +667,7 @@
           "type": "Bool",
           "name": "UseServiceOfElectricity",
           "label": "Электричество",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": true
         },
@@ -675,7 +675,7 @@
           "type": "Bool",
           "name": "UseServiceOfHotWater",
           "label": "Вода горячая",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": true
         },
@@ -683,7 +683,7 @@
           "type": "Bool",
           "name": "UseServiceOfWater",
           "label": "Вода холодная по трубопроводу",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": true
         }
@@ -698,7 +698,7 @@
           "type": "Bool",
           "name": "HasBathroom",
           "label": "Да",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": false
         },
@@ -706,7 +706,7 @@
           "type": "Bool",
           "name": "HasntBathroom",
           "label": "Нет",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": false
         }
@@ -721,7 +721,7 @@
           "type": "Bool",
           "name": "HasElectricityCounter",
           "label": "Да, установлен",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": false
         },
@@ -729,7 +729,7 @@
           "type": "Bool",
           "name": "HasntElectricityCounter",
           "label": "Нет, не установлен",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": false
         },
@@ -737,7 +737,7 @@
           "type": "Bool",
           "name": "HasntEvenElectricity",
           "label": "Не проведено эл-во в дом",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": false
         },
@@ -746,7 +746,7 @@
           "name": "DrinkingWaterSource",
           "label": "Что является основным источником питьевого водоснабжения Вашего жилья?",
           "enumDef": "5686B06B-1CFA-4D59-AA57-1E1BC92DCAFA",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": false
         },
@@ -755,7 +755,7 @@
           "name": "roof_material",
           "label": "Какой основной строительный материал пола?",
           "enumDef": "903E4BA3-4A68-4992-A32A-3C0BEA8ECB95",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": false
         },
@@ -764,7 +764,7 @@
           "name": "floor",
           "label": "Какой основной строительный материал крыши?",
           "enumDef": "02107F45-6230-4153-835B-6611D2A8BFEC",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": false
         },
@@ -773,7 +773,7 @@
           "name": "fence",
           "label": "Какой материал забора?",
           "enumDef": "6220E90B-9486-4D64-842C-368CA46FAFD5",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": false
         },
@@ -782,7 +782,7 @@
           "name": "foundation",
           "label": "Материал фундамента",
           "enumDef": "6740ACAB-62B3-4AD2-A259-2A34067FACE1",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": false
         },
@@ -791,7 +791,7 @@
           "name": "PowerToCoocking",
           "label": "Что является основным источником энергии для приготовления пищи?",
           "enumDef": "23676502-06ED-416C-A26A-85214C2D8202",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": false
         },
@@ -800,7 +800,7 @@
           "name": "SourceForHeater",
           "label": "Что является основным источником отопления ВО ВРЕМЯ ОТОПИТЕЛЬНОГО СЕЗОНА?",
           "enumDef": "02FEBBCB-49C3-496F-B18A-ACE4D8A2B7CD",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": false
         }
@@ -815,7 +815,7 @@
           "type": "Bool",
           "name": "mchs1",
           "label": "Потеря имущества от стихийного бедствия (пожара, наводнения, землетрясения)",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": true
         },
@@ -823,7 +823,7 @@
           "type": "Bool",
           "name": "mchs2",
           "label": "Засуха, болезнь растений вредители сельхозкультур",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": true
         },
@@ -831,7 +831,7 @@
           "type": "Bool",
           "name": "mchs3",
           "label": "Падёж, угон, потеря скота, падёж птицы",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": true
         }
@@ -847,7 +847,7 @@
           "name": "TimeOfWalking1",
           "label": "Если дети в Вашей семье ходят в школу, сколько времени требуется для того, чтобы детям утром добраться до школы (если разные школы, укажите ближайшую, в которую ходит кто-то из ваших детей или внуков)",
           "enumDef": "24176A9B-2E8D-4A8E-A87A-FD01435C3B69",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": true
         },
@@ -856,7 +856,7 @@
           "name": "TimeOfWalking2",
           "label": "При необходимости, сколько времени Вам потребовалось бы, чтобы добраться до ближайшего государственного или частного мед учреждения (поликлиники или больницы)",
           "enumDef": "24176A9B-2E8D-4A8E-A87A-FD01435C3B69",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": true
         }
@@ -871,7 +871,7 @@
           "type": "Currency",
           "name": "amount_of_electricity",
           "label": "Общая сумма выплат за электричество",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": true
         },
@@ -879,7 +879,7 @@
           "type": "Currency",
           "name": "amount_of_fuel",
           "label": "Общая сумма выплат за топливо (уголь, дрова)",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": true
         },
@@ -887,7 +887,7 @@
           "type": "Currency",
           "name": "amount_of_schoolfees",
           "label": "Общая сумма выплат за учебу детей в школе",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": true
         }
@@ -902,7 +902,7 @@
           "type": "Currency",
           "name": "KON",
           "label": "Сумма коэффициентов",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": true
         },
@@ -910,7 +910,7 @@
           "type": "Currency",
           "name": "KONNew",
           "label": "Сумма коэффициентов (новая)",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": true
         },
@@ -918,7 +918,7 @@
           "type": "Float",
           "name": "BALL",
           "label": "БАЛЛ",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": true
         },
@@ -926,7 +926,7 @@
           "type": "Bool",
           "name": "HasDiscount",
           "label": "Дисконт",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": true
         },
@@ -934,7 +934,7 @@
           "type": "Float",
           "name": "BALLNew",
           "label": "БАЛЛ (новый)",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": true
         },
@@ -942,7 +942,7 @@
           "type": "Float",
           "name": "LimitAcceptance",
           "label": "Порог прохождения",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": true
         }
