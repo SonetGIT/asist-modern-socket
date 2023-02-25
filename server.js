@@ -374,6 +374,38 @@ async function getSubDocuments(selectedDoc, form, userId) {
   }
   return subDocuments;
 }
+async function getSubDocList(selectedDoc, form, userId) {
+  let subDocList = {};
+  let selDoc = JSON.parse(selectedDoc);
+  for (let i = 0; i < selDoc.attributes.length; i++) {
+    if (
+      selDoc.attributes[i].type === "DocList" &&
+      selDoc.attributes[i].value !== null
+    ) {
+      for (let s = 0; s < form.sections.length; s++) {
+        if (
+          form.sections[s].type === "DocList" &&
+          selDoc.attributes[i].name === form.sections[s].name
+        ) {
+          await request({
+            headers: { "content-type": "application/json" },
+            // url: asistRESTApi + "/ASIST-MODERN-API/api/Document/GetDocumentById/" + selDoc.attributes[i].value + "?userId=" + userId,
+            url: asistRESTApi + "/ASIST-MODERN-API/api/Document/GetDocumentListById/" + form.sections[s].api,
+            json: true,
+            method: "GET",
+          })
+            .then(async function (response) {
+              console.log("RES: ", response);
+              subDocList[selDoc.attributes[i].name].data = response;
+              subDocList[selDoc.attributes[i].name].buttons = form.sections[s].buttons;
+            })
+            .catch(function (error) {});
+        }
+      }
+    }
+  }
+  return subDocList;
+}
 //***System main tasks functions***
 async function sendInstructionsForm(session_id, message, restore) {
   let gridForm = null;
@@ -537,6 +569,7 @@ async function sendPersonForm(message, taskID, restore) {
 async function sendAppStateForm(message, taskID, restore) {
   console.log("MESS sendAppStateForm", message);
   let subDocuments = null;
+  let subDocList = null;
   let appStateForm = JSON.parse(JSON.parse(message.form));
   let gridForm = null;
   let gridFormButtons = null;
@@ -559,6 +592,7 @@ async function sendAppStateForm(message, taskID, restore) {
     if (message.taskType === "showAppStateForm") {
       subDocuments.Application = JSON.parse(message.application);
     }
+    subDocList = await getSubDocList(message.selectedDoc, appStateForm, message.userId);
   }
   // // console.log("FORM", userForm)
   let buttons =
