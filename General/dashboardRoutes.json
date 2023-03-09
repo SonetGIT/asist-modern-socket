@@ -16,7 +16,7 @@
           "commandType": "launchProcess",
           "processKey": "process_7970005f-69f9-4fb5-90e9-d5d09c71ab1f",
           "level4": null
-        },
+        },               
         {
           "name": "createApplication",
           "label": "Создать",

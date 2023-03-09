@@ -37,9 +37,61 @@
         "label": "Отмена"
       }
     ],
-    "AppStateButtons": [
+    "AppStateButtons": [      
+      {
+        "name": "createIncomeDoc",
+        "label": "Добавить доход"
+      },
+      {
+        "name": "createLandPlotDoc",
+        "label": "Добавить зем/уч"
+      },
+      {
+        "name": "createFamMemDoc",
+        "label": "Создать ДМХ"
+      },
       {
         "name": "saveAppStateDoc",
+        "label": "Сохранить"
+      },
+      {
+        "name": "cancel",
+        "label": "Отмена"
+      }
+    ],
+    "FamMemCreateFormBtn": [
+      {
+        "name": "createjjjjjjFamMemDoc",
+        "label": "Сохранить"
+      },
+      {
+        "name": "cancel",
+        "label": "Отмена"
+      }
+    ],
+    "FamMemSaveFormBtn": [
+      {
+        "name": "saveFamMemDoc",
+        "label": "Сохранить"
+      },
+      {
+        "name": "cancel",
+        "label": "Отмена"
+      }
+    ],
+    "LandPlotSaveFormBtn": [
+      {
+        "name": "saveLandPlotDoc",
+        "label": "Сохранить"
+      },
+      {
+        "name": "cancel",
+        "label": "Отмена"
+      }
+    ],
+    "IncomeSaveFormBtn": [
+      {
+        "name": "saveIncomeDoc",
         "label": "Сохранить"
       },
       {

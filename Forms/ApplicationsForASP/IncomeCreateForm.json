@@ -1,17 +1,25 @@
 {
-  "formName": "IncomeGridForm",
-  "defid": "F33A1105-B5D6-4A3C-A183-91E85EDFDE69",
+  "formName": "IncomeCreateForm",
+  "defid": "4e302afb-6089-4eaa-b86c-6215dd8e7407",
   "label": "Доход",
   "sections": [
     {
       "type": "Doc",
-      "name": "PersonData",
+      "name": "Person",
       "label": "Гражданин",
       "contents": [
         {
           "type": "Text",
           "name": "IIN",
           "label": "ПИН",
+          "edit": false,
+          "show": true,
+          "required": false
+        },
+        {
+          "type": "Text",
+          "name": "SIN",
+          "label": "СИН",
           "edit": false,
           "show": true,
           "required": false
@@ -56,6 +64,57 @@
           "edit": false,
           "show": true,
           "required": true
+        },
+        {
+          "type": "Enum",
+          "name": "FamilyState",
+          "label": "Семейное положение",
+          "enumDef": "6E4930EA-895F-4709-9511-F415FFF4C506",
+          "edit": false,
+          "show": true,
+          "required": true
+        },
+        {
+          "type": "Enum",
+          "name": "PassportType",
+          "label": "Типы документа",
+          "enumDef": "639C4A54-CDC2-4752-B9BC-210A775A4613",
+          "edit": false,
+          "show": true,
+          "required": true
+        },
+        {
+          "type": "Text",
+          "name": "PassportSeries",
+          "label": "Серия",
+          "edit": false,
+          "show": true,
+          "required": false
+        },
+        {
+          "type": "Text",
+          "name": "PassportNo",
+          "label": "№",
+          "edit": false,
+          "show": true,
+          "required": false
+        },
+        {
+          "type": "Text",
+          "name": "Issuing_Authority",
+          "label": "Выдавший орган",
+          "edit": false,
+          "show": true,
+          "required": false
+        },
+        {
+          "type": "DateTime",
+          "name": "Date_of_Issue",
+          "label": "Дата выдачи",
+          "apiName": null,
+          "edit": false,
+          "show": true,
+          "required": true
         }
       ]
     },
@@ -76,7 +135,7 @@
           "type": "Enum",
           "name": "TypeIncome",
           "label": "Вид дохода",
-          "enumDef": "5B4BDDC3-DB14-4DEB-B20A-D945E10137F0", 
+          "enumDef": "5B4BDDC3-DB14-4DEB-B20A-D945E10137F0",
           "edit": true,
           "show": true,
           "required": false

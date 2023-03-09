@@ -116,7 +116,11 @@ async function restoreSession(userId, session_id, userRole) {
         } else if (
           taskType === "showApplicationForm" ||
           taskType === "showAppStateForm" ||
-          taskType === "showAppStateSaveForm"
+          taskType === "showAppStateSaveForm" ||
+          taskType === "showAppStateViewForm" ||
+          taskType === "showFamMemberCreateForm" ||
+          taskType === "showLandPlotCreateForm" ||
+          taskType === "showIncomeCreateForm"
         ) {
           message = JSON.parse(task.taskVariables.value);
           await sendAppStateForm(message, camundaTaskList[i].id, true);
@@ -343,28 +347,17 @@ async function getSubDocuments(selectedDoc, form, userId) {
   let subDocuments = {};
   let selDoc = JSON.parse(selectedDoc);
   for (let i = 0; i < selDoc.attributes.length; i++) {
-    if (
-      selDoc.attributes[i].type === "Doc" &&
-      selDoc.attributes[i].value !== null
-    ) {
+    if (selDoc.attributes[i].type === "Doc" && selDoc.attributes[i].value !== null) {
       for (let s = 0; s < form.sections.length; s++) {
-        if (
-          form.sections[s].type === "Doc" &&
-          selDoc.attributes[i].name === form.sections[s].name
-        ) {
+        if (form.sections[s].type === "Doc" && selDoc.attributes[i].name === form.sections[s].name) {
           await request({
             headers: { "content-type": "application/json" },
-            url:
-              asistRESTApi +
-              "/ASIST-MODERN-API/api/Document/GetDocumentById/" +
-              selDoc.attributes[i].value +
-              "?userId=" +
-              userId,
+            url: asistRESTApi + "/ASIST-MODERN-API/api/Document/GetDocumentById/" + selDoc.attributes[i].value + "?userId=" + userId,
             json: true,
             method: "GET",
           })
             .then(async function (response) {
-              console.log("RES: ", response);
+              console.log("RES: ", selDoc.attributes[i].name, response.attributes[0]);
               subDocuments[selDoc.attributes[i].name] = response;
             })
             .catch(function (error) {});
@@ -1551,7 +1544,11 @@ async function sendRabbitMessage(msg) {
   } else if (
     taskType === "showApplicationForm" ||
     taskType === "showAppStateForm" ||
-    taskType === "showAppStateSaveForm"
+    taskType === "showAppStateSaveForm" ||
+    taskType === "showAppStateViewForm" ||    
+    taskType === "showFamMemberCreateForm" ||
+    taskType === "showLandPlotCreateForm" ||
+    taskType === "showIncomeCreateForm"
   ) {
     await sendAppStateForm(taskVariables, message.taskID);
   } else if (taskType === "showApplicationsGridForm") {
