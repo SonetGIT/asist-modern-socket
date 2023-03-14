@@ -21,6 +21,8 @@ const formsToInsert = [
   require("./Forms/ApplicationsForASP/IncomeCreateForm.json"),
   require("./Forms/ApplicationsForASP/LandPlotGridForm.json"),
   require("./Forms/ApplicationsForASP/LandPlotCreateForm.json"),  
+  require("./Forms/ApplicationsForASP/personIncomeGridForm.json"), 
+  require("./Forms/ApplicationsForASP/personLandPlotGridForm.json"), 
   //PaymentsDepartment forms
   require("./Forms/PaymentsDepartment/closeMonthCreateParamForm.json"),
   require("./Forms/PaymentsDepartment/closeMonthSearchParamForm.json"),

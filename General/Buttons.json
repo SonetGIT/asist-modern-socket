@@ -37,19 +37,19 @@
         "label": "Отмена"
       }
     ],
-    "AppStateButtons": [      
+    "AppStateButtons": [
       {
-        "name": "createIncomeDoc",
-        "label": "Добавить доход"
-      },
+        "name": "createFamMemDoc",
+        "label": "Создать ЧДМХ"
+      },      
       {
         "name": "createLandPlotDoc",
         "label": "Добавить зем/уч"
       },
       {
-        "name": "createFamMemDoc",
-        "label": "Создать ДМХ"
-      },
+        "name": "createIncomeDoc",
+        "label": "Добавить доход"
+      },      
       {
         "name": "saveAppStateDoc",
         "label": "Сохранить"

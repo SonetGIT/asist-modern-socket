@@ -587,7 +587,7 @@ async function sendAppStateForm(message, taskID, restore) {
     }
     subDocList = await getSubDocList(message.selectedDoc, appStateForm, message.userId);
   }
-  // // console.log("FORM", userForm)
+  // console.log("FORM", userForm)
   let buttons =
     Buttons[ConfigurationFile.rolesConfig[message.userRole]][message.buttons];
   tableFormButtons =
@@ -596,7 +596,6 @@ async function sendAppStateForm(message, taskID, restore) {
     ];
 
   var enumData = await getEnumData(appStateForm);
-
   var messageType = "userTask";
   if (restore === true) {
     messageType = "restoreTab";

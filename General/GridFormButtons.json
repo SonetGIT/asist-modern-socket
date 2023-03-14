@@ -19,6 +19,26 @@
         "marginBottom": 13
       }
     ],
+    "PersonLandPlotGridFormBtn": [
+      {
+        "name": "selectPersonLandPlot",
+        "label": "Выбрать",
+        "backgroundColor": "#4F7AAE",
+        "color": "white",
+        "marginTop": 15,
+        "marginBottom": 13
+      }
+    ],
+    "PersonIncomeGridFormBtn": [
+      {
+        "name": "selectPersonIncome",
+        "label": "Выбрать",
+        "backgroundColor": "#4F7AAE",
+        "color": "white",
+        "marginTop": 15,
+        "marginBottom": 13
+      }
+    ],    
     "ApplicationsGridForm": [
       {
         "name": "openApp",
