@@ -14,7 +14,7 @@
           "label": "ПИН",
           "edit": true,
           "show": true,
-          "required": false
+          "required": true
         },
         {
           "type": "Text",
@@ -52,7 +52,7 @@
           "type": "DateTime",
           "name": "Date_of_Birth",
           "label": "Дата рождения",
-          "edit": false,
+          "edit": true,
           "show": true,
           "required": true
         },

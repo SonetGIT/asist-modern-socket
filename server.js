@@ -267,19 +267,40 @@ async function getObjectTypeData(id, varName) {
 async function getEnumData(Form) {
   console.log("Form", Form.formName);
   var enumData = [];
-  for (var section = 0; section < Form.sections.length; section++) {
-    for (var item = 0; item < Form.sections[section].contents.length; item++) {
-      // console.log("ENUMDEF NAME", Form.sections[section].contents[item].name, "ENUMDEF", Form.sections[section].contents[item].enumDef)
-      if (Form.sections[section].contents[item].type === "Enum") {
-        let enumName = Form.sections[section].contents[item].name;
-        // console.log("ENUM NAME", enumName)
-        let enumDef = Form.sections[section].contents[item].enumDef;
-        // let apiName = ConfigurationFile.enumConfig[enumDef].apiName;
-        let apiName = enumDataApi + enumDef;
-        let newEnumList = await getEnumValues(apiName, enumName, enumDef);
-        enumData.push(newEnumList);
-      }
+  for (var section = 0; section < Form.sections.length; section++) { 
+    
+    if(Form.sections[section].type === "Doc"){
+      // console.log("TYPE", Form.sections[section].name)
+      for (var docSection = 0; docSection < Form.sections[section].sections.length; docSection++){
+        // console.log("DOCS", Form.sections[section].sections[docSection].name)
+        for (var docContent = 0; docContent < Form.sections[section].sections[docSection].contents.length; docContent++){
+          // console.log("TYPE", Form.sections[section].sections[docSection].contents[docContent].type)
+          if (Form.sections[section].sections[docSection].contents[docContent].type === "Enum") {
+            
+            let enumName = Form.sections[section].sections[docSection].contents[docContent].name;
+            // console.log("ENUM NAME", enumName)
+            let enumDef = Form.sections[section].sections[docSection].contents[docContent].enumDef;
+            let apiName = enumDataApi + enumDef;
+            let newEnumList = await getEnumValues(apiName, enumName, enumDef);
+            enumData.push(newEnumList);
+          }
+        }
+      }      
     }
+    else{
+      for (var item = 0; item < Form.sections[section].contents.length; item++) {
+      // console.log("ENUMDEF NAME", Form.sections[section].contents[item].name, "ENUMDEF", Form.sections[section].contents[item].enumDef)
+        if (Form.sections[section].contents[item].type === "Enum") {
+          let enumName = Form.sections[section].contents[item].name;
+          // console.log("ENUM NAME", enumName)
+          let enumDef = Form.sections[section].contents[item].enumDef;
+          // let apiName = ConfigurationFile.enumConfig[enumDef].apiName;
+          let apiName = enumDataApi + enumDef;
+          let newEnumList = await getEnumValues(apiName, enumName, enumDef);
+          enumData.push(newEnumList);
+        }
+      }
+    }    
   }
   // console.log("APINAME", apiName);
   // console.log("Enums", enumData)
@@ -287,7 +308,7 @@ async function getEnumData(Form) {
 }
 // Request Enum Data from API
 async function getEnumValues(apiName, enumName, enumDef) {
-  console.log("ENUM ITEM", enumName);
+  // console.log("ENUM ITEM", enumName);
   var newEnumValues = await request({
     headers: { "content-type": "application/json" },
     url: asistRESTApi + apiName,
@@ -295,7 +316,7 @@ async function getEnumValues(apiName, enumName, enumDef) {
     .then(function (response) {
       let resp = JSON.parse(response);
       let parsedData = resp;
-      console.log("ПРИМЕР ОТВЕТА JSON ОБЪЕКТА", response, resp);
+      // console.log("ПРИМЕР ОТВЕТА JSON ОБЪЕКТА", response, resp);
       let newEnumData = [];
       let dataToCollect = ConfigurationFile.enumConfig[enumDef].data;
       for (let key = 0; key < parsedData.length; key++) {
@@ -357,7 +378,7 @@ async function getSubDocuments(selectedDoc, form, userId) {
             method: "GET",
           })
             .then(async function (response) {
-              console.log("RES: ", selDoc.attributes[i].name, response.attributes[0]);
+              // console.log("RES: ", selDoc.attributes[i].name, response.attributes[0]);
               subDocuments[selDoc.attributes[i].name] = response;
             })
             .catch(function (error) {});
@@ -388,7 +409,7 @@ async function getSubDocList(selectedDoc, form, userId) {
             method: "GET",
           })
             .then(async function (response) {
-              console.log("RES: ", response);
+              // console.log("RES: ", response);
               subDocList[selDoc.attributes[i].name].data = response;
               subDocList[selDoc.attributes[i].name].buttons = form.sections[s].buttons;
             })
@@ -560,7 +581,7 @@ async function sendPersonForm(message, taskID, restore) {
 }
 // Collect data related to PersonForm form and send to client
 async function sendAppStateForm(message, taskID, restore) {
-  console.log("MESS sendAppStateForm", message);
+  // console.log("MESS sendAppStateForm", message);
   let subDocuments = null;
   let subDocList = null;
   let appStateForm = JSON.parse(JSON.parse(message.form));
@@ -577,11 +598,7 @@ async function sendAppStateForm(message, taskID, restore) {
     gridFormEnumData = await getEnumData(gridForm);
   }
   if (message.selectedDoc !== "null") {
-    subDocuments = await getSubDocuments(
-      message.selectedDoc,
-      appStateForm,
-      message.userId
-    );
+    subDocuments = await getSubDocuments(message.selectedDoc, appStateForm, message.userId);
     if (message.taskType === "showAppStateForm") {
       subDocuments.Application = JSON.parse(message.application);
     }
@@ -626,7 +643,7 @@ async function sendAppStateForm(message, taskID, restore) {
     tabLabel: message.tabLabel,
     totalCount: message.totalCount,
   };
-  console.log("sendAppStateForm", mes);
+  // console.log("sendAppStateForm", mes);
   await sendMessage(mes);
 }
 //Список заявлений на АСП по статусу

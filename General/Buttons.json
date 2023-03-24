@@ -39,6 +39,10 @@
     ],
     "AppStateButtons": [
       {
+        "name": "calcKON",
+        "label": "КОН"
+      },
+      {
         "name": "createFamMemDoc",
         "label": "Создать ЧДМХ"
       },      

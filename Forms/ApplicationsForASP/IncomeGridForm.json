@@ -5,7 +5,7 @@
   "sections": [
     {
       "type": "Doc",
-      "name": "PersonData",
+      "name": "Person",
       "label": "Гражданин",
       "contents": [
         {
