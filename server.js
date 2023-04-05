@@ -269,7 +269,7 @@ async function getEnumData(Form) {
   var enumData = [];
   for (var section = 0; section < Form.sections.length; section++) { 
     
-    if(Form.sections[section].type === "Doc"){
+    if(Form.sections[section].type === "Doc" || Form.sections[section].type === "DocList"){
       // console.log("TYPE", Form.sections[section].name)
       for (var docSection = 0; docSection < Form.sections[section].sections.length; docSection++){
         // console.log("DOCS", Form.sections[section].sections[docSection].name)
@@ -404,14 +404,15 @@ async function getSubDocList(selectedDoc, form, userId) {
           await request({
             headers: { "content-type": "application/json" },
             // url: asistRESTApi + "/ASIST-MODERN-API/api/Document/GetDocumentById/" + selDoc.attributes[i].value + "?userId=" + userId,
-            url: asistRESTApi + "/ASIST-MODERN-API/api/Document/GetDocumentListById/" + form.sections[s].api,
+            
+            url: asistRESTApi + ConfigurationFile.enumConfig[form.sections[s].docListDef].api + selDoc.id + "&userId=" + userId,
             json: true,
             method: "GET",
           })
             .then(async function (response) {
               // console.log("RES: ", response);
               subDocList[selDoc.attributes[i].name].data = response;
-              subDocList[selDoc.attributes[i].name].buttons = form.sections[s].buttons;
+              // subDocList[selDoc.attributes[i].name].buttons = form.sections[s].buttons;
             })
             .catch(function (error) {});
         }
@@ -602,7 +603,8 @@ async function sendAppStateForm(message, taskID, restore) {
     if (message.taskType === "showAppStateForm") {
       subDocuments.Application = JSON.parse(message.application);
     }
-    subDocList = await getSubDocList(message.selectedDoc, appStateForm, message.userId);
+    subDocList = [{id: "9848948589", attributes: [{name: "IIN", value: "5651651", type: "Text"}]}]
+    // subDocList = await getSubDocList(message.selectedDoc, appStateForm, message.userId);
   }
   // console.log("FORM", userForm)
   let buttons =

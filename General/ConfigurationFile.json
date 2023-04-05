@@ -10,155 +10,214 @@
     "C780CE23-AC09-4CC3-8147-7779F6D80B65": {
       "data": {
         "id": "Id",
-        "label": ["Text"]
+        "label": [
+          "Text"
+        ]
       }
     },
     "6E4930EA-895F-4709-9511-F415FFF4C506": {
       "data": {
         "id": "Id",
-        "label": ["Text"]
+        "label": [
+          "Text"
+        ]
       }
     },
     "639C4A54-CDC2-4752-B9BC-210A775A4613": {
       "data": {
         "id": "Id",
-        "label": ["Text"]
+        "label": [
+          "Text"
+        ]
       }
     },
     "F38FC8F6-E925-434E-8DFC-EF8937A0BE9B": {
       "data": {
         "id": "Id",
-        "label": ["Text"]
+        "label": [
+          "Text"
+        ]
       }
     },
     "37D69002-73CA-4507-9227-A57EA262B536": {
       "data": {
         "id": "Id",
-        "label": ["Text"]
+        "label": [
+          "Text"
+        ]
       }
     },
     "3E3E0163-23BD-4B9C-A118-3648283C1DE1": {
       "data": {
         "id": "Id",
-        "label": ["Text"]
+        "label": [
+          "Text"
+        ]
       }
     },
     "3A841108-EB67-40EA-AA07-AC0849237883": {
       "data": {
         "id": "Id",
-        "label": ["Text"]
+        "label": [
+          "Text"
+        ]
       }
     },
     "3C9C6B02-F0CE-4E88-9D48-B47E09CAD8B8": {
       "data": {
         "id": "Id",
-        "label": ["Text"]
+        "label": [
+          "Text"
+        ]
       }
     },
     "62F1128C-938B-4F79-9762-A12216ED5045": {
       "data": {
         "id": "Id",
-        "label": ["Text"]
+        "label": [
+          "Text"
+        ]
       }
     },
     "5686B06B-1CFA-4D59-AA57-1E1BC92DCAFA": {
       "data": {
         "id": "Id",
-        "label": ["Text"]
+        "label": [
+          "Text"
+        ]
       }
     },
     "23676502-06ED-416C-A26A-85214C2D8202": {
       "data": {
         "id": "Id",
-        "label": ["Text"]
+        "label": [
+          "Text"
+        ]
       }
     },
     "02FEBBCB-49C3-496F-B18A-ACE4D8A2B7CD": {
       "data": {
         "id": "Id",
-        "label": ["Text"]
+        "label": [
+          "Text"
+        ]
       }
     },
     "24176A9B-2E8D-4A8E-A87A-FD01435C3B69": {
       "data": {
         "id": "Id",
-        "label": ["Text"]
+        "label": [
+          "Text"
+        ]
       }
     },
     "8C5E9217-59AC-4B4E-A41A-643FC34444E4": {
       "data": {
         "id": "Id",
-        "label": ["Text"]
+        "label": [
+          "Text"
+        ]
       }
     },
     "4D029337-C025-442E-8E93-AFD1852073AC": {
       "data": {
         "id": "Id",
-        "label": ["Text"],
-        "regionId": ["regionId"]
+        "label": [
+          "Text"
+        ],
+        "regionId": [
+          "regionId"
+        ]
       }
     },
     "967D525D-9B76-44BE-93FA-BD4639EA515A": {
       "data": {
         "id": "Id",
-        "label": ["Text"],
-        "districtId": ["districtId"]
+        "label": [
+          "Text"
+        ],
+        "districtId": [
+          "districtId"
+        ]
       }
     },
     "B70BAD68-7532-471F-A705-364FD5F1BA9E": {
       "data": {
         "id": "Id",
-        "label": ["Text"],
-        "settlementId": ["settlementId"]
+        "label": [
+          "Text"
+        ],
+        "settlementId": [
+          "settlementId"
+        ]
       }
     },
     "984CDE63-F402-4834-A3BE-10B996FF36F1": {
       "data": {
         "id": "Id",
-        "label": ["Text"]
+        "label": [
+          "Text"
+        ]
       }
     },
     "02107F45-6230-4153-835B-6611D2A8BFEC": {
       "data": {
         "id": "Id",
-        "label": ["Text"]
+        "label": [
+          "Text"
+        ]
       }
     },
     "903E4BA3-4A68-4992-A32A-3C0BEA8ECB95": {
       "data": {
         "id": "Id",
-        "label": ["Text"]
+        "label": [
+          "Text"
+        ]
       }
     },
     "6220E90B-9486-4D64-842C-368CA46FAFD5": {
       "data": {
         "id": "Id",
-        "label": ["Text"]
+        "label": [
+          "Text"
+        ]
       }
     },
     "6740ACAB-62B3-4AD2-A259-2A34067FACE1": {
       "data": {
         "id": "Id",
-        "label": ["Text"]
+        "label": [
+          "Text"
+        ]
       }
     },
     "430E562F-A3C3-4911-A752-C1F0F18E5A22": {
       "data": {
         "id": "Id",
-        "label": ["Text"]
+        "label": [
+          "Text"
+        ]
       }
     },
     "06FA62A9-5B4D-4B38-B297-EC3741E0D896": {
       "data": {
         "id": "Id",
-        "label": ["Text"]
+        "label": [
+          "Text"
+        ]
       }
     },
     "5B4BDDC3-DB14-4DEB-B20A-D945E10137F0": {
       "data": {
         "id": "Id",
-        "label": ["Text"]
+        "label": [
+          "Text"
+        ]
       }
-    }    
+    },
+    "959762D8-FEB6-4247-986D-7ECE63EED1AD": {
+      "api": "/ASIST-MODERN-API/api/Document/GetTrusteePerson?appStateId="
+    }
   }
 }
