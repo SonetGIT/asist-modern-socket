@@ -11,8 +11,8 @@
       "sections": [
         {
           "type": "Section",
-          "name": "BLABLA",
-          "label": "БЛАБЛАБЛА",
+          "name": "Family_Member_section_data",
+          "label": "Данные членов домохозяйства",
           "contents": [
             {
               "type": "Text",
