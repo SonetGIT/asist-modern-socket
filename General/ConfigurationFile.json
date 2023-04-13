@@ -217,7 +217,13 @@
       }
     },
     "959762D8-FEB6-4247-986D-7ECE63EED1AD": {
-      "api": "/ASIST-MODERN-API/api/Document/GetTrusteePerson?appStateId="
+      "api": "/ASIST-MODERN-API/api/Document/GetTrusteePerson2?appStateId="
+    },
+    "F33A1105-B5D6-4A3C-A183-91E85EDFDE69": {
+      "api": "/ASIST-MODERN-API/api/Document/GetIncomePerson?appStateId="
+    },
+    "1B196A9B-8527-4FF0-B0F2-1A715931A88C": {
+      "api": "/ASIST-MODERN-API/api/Document/GetLandAndPlotPerson?appStateId="
     }
   }
 }

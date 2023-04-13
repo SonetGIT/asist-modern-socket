@@ -270,7 +270,7 @@ async function getEnumData(Form) {
   for (var section = 0; section < Form.sections.length; section++) {
 
     if (Form.sections[section].type === "Doc" || Form.sections[section].type === "DocList") {
-      // console.log("TYPE", Form.sections[section].name)
+      console.log("TYPE1004", Form.sections[section].name)
       for (var docSection = 0; docSection < Form.sections[section].sections.length; docSection++) {
         // console.log("DOCS", Form.sections[section].sections[docSection].name)
         for (var docContent = 0; docContent < Form.sections[section].sections[docSection].contents.length; docContent++) {
@@ -396,7 +396,7 @@ async function getSubDocList(selectedDoc, form, userId) {
   //     if (selDoc.attributes[i].value !== null) {
   for (let s = 0; s < form.sections.length; s++) {
     if (form.sections[s].type === "DocList") {   // && selDoc.attributes[i].name === form.sections[s].name
-      console.log("DOCL", form.sections[s].name, asistRESTApi + ConfigurationFile.enumConfig[form.sections[s].docListDef].api + selDoc.id + "&userId=" + userId,)
+      console.log("DOCL1004", form.sections[s].name, asistRESTApi + ConfigurationFile.enumConfig[form.sections[s].docListDef].api + selDoc.id + "&userId=" + userId,)
       await request({
         headers: { "content-type": "application/json" },
         url: asistRESTApi + ConfigurationFile.enumConfig[form.sections[s].docListDef].api + selDoc.id + "&userId=" + userId,
@@ -419,6 +419,38 @@ async function getSubDocList(selectedDoc, form, userId) {
   // }
   return subDocList;
 }
+/* оригинал
+async function getSubDocList(selectedDoc, form, userId) {
+  let subDocList = {};
+  let selDoc = JSON.parse(selectedDoc);
+  // for (let i = 0; i < selDoc.attributes.length; i++) {
+  //   if (selDoc.attributes[i].type === "DocList") {
+  //     if (selDoc.attributes[i].value !== null) {
+  for (let s = 0; s < form.sections.length; s++) {
+    if (form.sections[s].type === "DocList") {   // && selDoc.attributes[i].name === form.sections[s].name
+      console.log("DOCL1004", form.sections[s].name, asistRESTApi + ConfigurationFile.enumConfig[form.sections[s].docListDef].api + selDoc.id + "&userId=" + userId,)
+      await request({
+        headers: { "content-type": "application/json" },
+        url: asistRESTApi + ConfigurationFile.enumConfig[form.sections[s].docListDef].api + selDoc.id + "&userId=" + userId,
+        json: true,
+        method: "GET",
+      })
+        .then(async function (response) {
+          // console.log("RES SUBDOCL: ", response);
+          subDocList[form.sections[s].name] = response;
+          // subDocList[selDoc.attributes[i].name].buttons = form.sections[s].buttons;
+        })
+        .catch(function (error) { });
+    }
+  }
+  // }
+  // else {
+  //   subDocList[selDoc.attributes[i].name] = { documents: [], id: null };
+  // }
+  //   }
+  // }
+  return subDocList;
+}*/
 //***System main tasks functions***
 async function sendInstructionsForm(session_id, message, restore) {
   let gridForm = null;
@@ -599,7 +631,8 @@ async function sendAppStateForm(message, taskID, restore) {
   if (message.selectedDoc !== "null") {
     subDocuments = await getSubDocuments(message.selectedDoc, appStateForm, message.userId);
     if (message.taskType === "showAppStateForm") {
-      subDocuments.Application = JSON.parse(message.application);
+      //subDocuments.Application = JSON.parse(message.application);
+      subDocuments.documents = JSON.parse(message.application);
     }
     // subDocList = {"Family_Member": [{id: "9848948589", attributes: [{name: "IIN", value: "5651651", type: "Text"}]}]}
     subDocList = await getSubDocList(message.selectedDoc, appStateForm, message.userId);
