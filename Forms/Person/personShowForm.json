@@ -61,7 +61,7 @@
           "name": "Sex",
           "label": "Пол",
           "enumDef": "C780CE23-AC09-4CC3-8147-7779F6D80B65",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": true
         },
@@ -70,7 +70,7 @@
           "name": "FamilyState",
           "label": "Семейное положение",
           "enumDef": "6E4930EA-895F-4709-9511-F415FFF4C506",
-          "edit": true,
+          "edit": false,
           "show": true,
           "required": true
         },
@@ -111,6 +111,7 @@
           "type": "DateTime",
           "name": "Date_of_Issue",
           "label": "Дата выдачи",
+          "apiName": null,
           "edit": false,
           "show": true,
           "required": true

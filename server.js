@@ -631,8 +631,8 @@ async function sendAppStateForm(message, taskID, restore) {
   if (message.selectedDoc !== "null") {
     subDocuments = await getSubDocuments(message.selectedDoc, appStateForm, message.userId);
     if (message.taskType === "showAppStateForm") {
-      //subDocuments.Application = JSON.parse(message.application);
-      subDocuments.documents = JSON.parse(message.application);
+      subDocuments.Application = JSON.parse(message.application);
+      //subDocuments.documents = JSON.parse(message.application);
     }
     // subDocList = {"Family_Member": [{id: "9848948589", attributes: [{name: "IIN", value: "5651651", type: "Text"}]}]}
     subDocList = await getSubDocList(message.selectedDoc, appStateForm, message.userId);
