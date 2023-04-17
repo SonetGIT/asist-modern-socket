@@ -37,23 +37,7 @@
         "label": "Отмена"
       }
     ],
-    "AppStateButtons": [
-      {
-        "name": "calcKON",
-        "label": "КОН"
-      },
-      {
-        "name": "createFamMemDoc",
-        "label": "Создать ЧДМХ"
-      },      
-      {
-        "name": "createLandPlotDoc",
-        "label": "Добавить зем/уч"
-      },
-      {
-        "name": "createIncomeDoc",
-        "label": "Добавить доход"
-      },      
+    "AppStateSaveBtn": [
       {
         "name": "saveAppStateDoc",
         "label": "Сохранить"
@@ -61,6 +45,32 @@
       {
         "name": "cancel",
         "label": "Отмена"
+      }
+    ],
+    "AppStateBtn": [
+      {
+        "name": "createTrusteePerson",
+        "label": "Доверительное лицо"
+      },
+      {
+        "name": "calcKON",
+        "label": "КОН"
+      },
+      {
+        "name": "createFamMemDoc",
+        "label": "Создать ЧДМХ"
+      },
+      {
+        "name": "createLandPlotDoc",
+        "label": "Добавить зем/уч"
+      },
+      {
+        "name": "createIncomeDoc",
+        "label": "Добавить доход"
+      },
+      {
+        "name": "cancel",
+        "label": "Закрыть"
       }
     ],
     "FamMemCreateFormBtn": [
