@@ -113,6 +113,16 @@
         "label": "Отмена"
       }
     ],
+    "TrusteePersonFromBtn": [
+      {
+        "name": "saveTrusteePerson",
+        "label": "Сохранить"
+      },
+      {
+        "name": "cancel",
+        "label": "Отмена"
+      }
+    ],
     "CloseMonthCreateButtons": [
       {
         "name": "createClosedMonthList",

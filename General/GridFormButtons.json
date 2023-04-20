@@ -38,11 +38,41 @@
         "marginTop": 15,
         "marginBottom": 13
       }
-    ],    
+    ],
     "ApplicationsGridForm": [
       {
         "name": "openApp",
         "label": "Открыть",
+        "backgroundColor": "#4F7AAE",
+        "color": "white",
+        "marginTop": 15,
+        "marginBottom": 13
+      }
+    ],
+    "FMGridBtn": [
+      {
+        "name": "deleteFM",
+        "label": "Удалить",
+        "backgroundColor": "#4F7AAE",
+        "color": "white",
+        "marginTop": 15,
+        "marginBottom": 13
+      }
+    ],
+    "IncomeGridBtn": [
+      {
+        "name": "deleteIncome",
+        "label": "Удалить",
+        "backgroundColor": "#4F7AAE",
+        "color": "white",
+        "marginTop": 15,
+        "marginBottom": 13
+      }
+    ],
+    "LandPlotGridBtn": [
+      {
+        "name": "deleteLP",
+        "label": "Удалить",
         "backgroundColor": "#4F7AAE",
         "color": "white",
         "marginTop": 15,

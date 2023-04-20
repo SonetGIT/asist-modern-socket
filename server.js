@@ -120,7 +120,9 @@ async function restoreSession(userId, session_id, userRole) {
           taskType === "showAppStateViewForm" ||
           taskType === "showFamMemberCreateForm" ||
           taskType === "showLandPlotCreateForm" ||
-          taskType === "showIncomeCreateForm"
+          taskType === "showIncomeCreateForm" ||
+          taskType === "showTrusteePersonForm"
+
         ) {
           message = JSON.parse(task.taskVariables.value);
           await sendAppStateForm(message, camundaTaskList[i].id, true);
@@ -388,7 +390,7 @@ async function getSubDocuments(selectedDoc, form, userId) {
   }
   return subDocuments;
 }
-async function getSubDocList(selectedDoc, form, userId) {
+async function getSubDocList(selectedDoc, form, userId, userRole) {
   let subDocList = {};
   let selDoc = JSON.parse(selectedDoc);
   // for (let i = 0; i < selDoc.attributes.length; i++) {
@@ -404,8 +406,9 @@ async function getSubDocList(selectedDoc, form, userId) {
         method: "GET",
       })
         .then(async function (response) {
-          // console.log("RES SUBDOCL: ", response);
+          response.buttons = GridFormButtons[ConfigurationFile.rolesConfig[userRole]][form.sections[s].buttons];
           subDocList[form.sections[s].name] = response;
+          console.log("RES SUBDOCL: ", response.buttons);
           // subDocList[selDoc.attributes[i].name].buttons = form.sections[s].buttons;
         })
         .catch(function (error) { });
@@ -459,9 +462,7 @@ async function sendInstructionsForm(session_id, message, restore) {
   if (message.gridForm !== "null") {
     gridForm = JSON.parse(JSON.parse(message.gridForm));
     gridFormButtons =
-      GridFormButtons[ConfigurationFile.rolesConfig[message.userRole]][
-      message.gridFormButtons
-      ];
+      GridFormButtons[ConfigurationFile.rolesConfig[message.userRole]][message.gridFormButtons];
     gridFormEnumData = await getEnumData(gridForm);
   }
   let Form = JSON.parse(JSON.parse(message.form));
@@ -635,7 +636,7 @@ async function sendAppStateForm(message, taskID, restore) {
       //subDocuments.documents = JSON.parse(message.application);
     }
     // subDocList = {"Family_Member": [{id: "9848948589", attributes: [{name: "IIN", value: "5651651", type: "Text"}]}]}
-    subDocList = await getSubDocList(message.selectedDoc, appStateForm, message.userId);
+    subDocList = await getSubDocList(message.selectedDoc, appStateForm, message.userId, message.userRole);
     gridFormEnumData = await getEnumData(appStateForm);
   }
   // console.log("FORM", userForm)
@@ -1599,7 +1600,8 @@ async function sendRabbitMessage(msg) {
     taskType === "showAppStateViewForm" ||
     taskType === "showFamMemberCreateForm" ||
     taskType === "showLandPlotCreateForm" ||
-    taskType === "showIncomeCreateForm"
+    taskType === "showIncomeCreateForm" ||
+    taskType === "showTrusteePersonForm"
   ) {
     await sendAppStateForm(taskVariables, message.taskID);
   } else if (taskType === "showApplicationsGridForm") {

@@ -969,7 +969,7 @@
         {
           "type": "Section",
           "name": "AppTrustee",
-          "label": "Данные жоверительного лица",
+          "label": "Данные доверительного лица",
           "contents": [
             {
               "type": "Text",
@@ -1088,6 +1088,7 @@
       "docListDef": "959762D8-FEB6-4247-986D-7ECE63EED1AD",
       "name": "Family_Member",
       "label": "Член домохозяйства",
+      "buttons": "FMGridBtn",
       "sections": [
         {
           "type": "Section",
@@ -1196,6 +1197,7 @@
       "docListDef": "F33A1105-B5D6-4A3C-A183-91E85EDFDE69",
       "name": "Income",
       "label": "Доход",
+      "buttons": "IncomeGridBtn",
       "sections": [
         {
           "type": "Section",
@@ -1293,6 +1295,7 @@
       "docListDef": "1B196A9B-8527-4FF0-B0F2-1A715931A88C",
       "name": "Land_Plot",
       "label": "Земельный участок",
+      "buttons": "LandPlotGridBtn",
       "sections": [
         {
           "type": "Section",
