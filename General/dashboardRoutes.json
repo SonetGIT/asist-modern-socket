@@ -11,14 +11,6 @@
       "level3": [
         {
           "name": "createApplication",
-          "label": "Для тестирование форм",
-          "parentLabel": "Для тестирование форм",
-          "commandType": "launchProcess",
-          "processKey": "process_7970005f-69f9-4fb5-90e9-d5d09c71ab1f",
-          "level4": null
-        },               
-        {
-          "name": "createApplication",
           "label": "Создать",
           "parentLabel": "Создать",
           "commandType": "launchProcess",
@@ -163,6 +155,14 @@
           "name": "insertFormsMenu",
           "label": "Обновить формы",
           "parentLabel": "Формы",
+          "level4": null
+        },
+        {
+          "name": "createApplication",
+          "label": "Для тестирование форм",
+          "parentLabel": "Для тестирование форм",
+          "commandType": "launchProcess",
+          "processKey": "process_7970005f-69f9-4fb5-90e9-d5d09c71ab1f",
           "level4": null
         }
       ]

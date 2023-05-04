@@ -1,5 +1,3 @@
-// Forms and files
-
 // Other files
 const ConfigurationFile = require("./General/ConfigurationFile.json");
 const Buttons = require("./General/Buttons.json");
@@ -42,8 +40,6 @@ function getUUID() {
   let uuidv1 = require("uuid/v1");
   return uuidv1();
 }
-
-// ***Camunda api start complete process***
 // Launch camunda process with incoming vars
 function startCamundaProcess(session_id, process_id, processKey, variables) {
   console.log("START PROCESS VARS", variables);
@@ -91,8 +87,6 @@ async function completeTask(variables, taskID) {
     }
   );
 }
-// ***Restoring sessions functions***
-// Restore all previously opened user tabs from Camunda
 //Воостановления сессии
 async function restoreSession(userId, session_id, userRole) {
   var camundaTaskList = await getCamundaTaskList();
@@ -113,7 +107,8 @@ async function restoreSession(userId, session_id, userRole) {
         ) {
           message = JSON.parse(task.taskVariables.value);
           await sendPersonForm(message, camundaTaskList[i].id, true);
-        } else if (
+        }
+        else if (
           taskType === "showApplicationForm" ||
           taskType === "showAppStateForm" ||
           taskType === "showAppStateSaveForm" ||
@@ -126,17 +121,20 @@ async function restoreSession(userId, session_id, userRole) {
         ) {
           message = JSON.parse(task.taskVariables.value);
           await sendAppStateForm(message, camundaTaskList[i].id, true);
-        } else if (taskType === "showApplicationsGridForm") {
+        }
+        else if (taskType === "showApplicationsGridForm") {
           message = JSON.parse(task.taskVariables.value);
           await sendApplicationsGridForm(message, camundaTaskList[i].id, true);
-        } else if (
+        }
+        else if (
           taskType === "showSearchUser" ||
           taskType === "showCreateUser" ||
           taskType === "showEditUser"
         ) {
           message = JSON.parse(task.taskVariables.value);
           await sendUserForm(session_id, message, true);
-        } else if (
+        }
+        else if (
           taskType === "showCloseMonthCreateParamForm" ||
           taskType === "showCloseMonthSearchParamForm" ||
           taskType === "showCloseMonthOnlyReadForm" ||
@@ -144,7 +142,8 @@ async function restoreSession(userId, session_id, userRole) {
         ) {
           message = JSON.parse(task.taskVariables.value);
           await sendCloseMonthForm(message, camundaTaskList[i].id, true);
-        } else if (
+        }
+        else if (
           taskType === "showOpenBanckAccountGetListForm" ||
           taskType === "showOpenBankDistrRegisterForm"
         ) {
@@ -154,7 +153,8 @@ async function restoreSession(userId, session_id, userRole) {
             camundaTaskList[i].id,
             true
           );
-        } else if (
+        }
+        else if (
           taskType === "showOpenBankAccountPreviewGridForm" ||
           taskType === "showOpenBankAccountRegisterForm" ||
           taskType === "showOpenBankAccDistrAppForms"
@@ -165,7 +165,8 @@ async function restoreSession(userId, session_id, userRole) {
             camundaTaskList[i].id,
             true
           );
-        } else if (
+        }
+        else if (
           taskType === "showUploadGetListGridForm" ||
           taskType === "showUploadDistrDetailGridForm" ||
           taskType === "showUploadBankAccountFileForm" ||
@@ -173,7 +174,8 @@ async function restoreSession(userId, session_id, userRole) {
         ) {
           message = JSON.parse(task.taskVariables.value);
           await sendUploadGetListForm(message, camundaTaskList[i].id, true);
-        } else if (
+        }
+        else if (
           taskType === "showRegistersForPaymentGetListForm" ||
           taskType === "showRegistersForPaymentDistrForm"
         ) {
@@ -183,14 +185,16 @@ async function restoreSession(userId, session_id, userRole) {
             camundaTaskList[i].id,
             true
           );
-        } else if (taskType === "showRegistersForPaymentDistrForm1") {
+        }
+        else if (taskType === "showRegistersForPaymentDistrForm1") {
           message = JSON.parse(task.taskVariables.value);
           await sendRegistersForPayment2GridForm(
             message,
             camundaTaskList[i].id,
             true
           );
-        } else if (
+        }
+        else if (
           taskType === "showRegForPayCreatDetailForm" ||
           taskType === "showPreviewRegForPayDocListForm" ||
           taskType === "showRegForPayAssignDetailForm" ||
@@ -202,7 +206,8 @@ async function restoreSession(userId, session_id, userRole) {
             camundaTaskList[i].id,
             true
           );
-        } else {
+        }
+        else {
           if (taskType === "showToast") {
             let vars = { userAction: { value: "cancel" } };
             await completeTask(vars, camundaTaskList[i].id);
@@ -270,7 +275,6 @@ async function getEnumData(Form) {
   console.log("Form", Form.formName);
   var enumData = [];
   for (var section = 0; section < Form.sections.length; section++) {
-
     if (Form.sections[section].type === "Doc" || Form.sections[section].type === "DocList") {
       console.log("TYPE1004", Form.sections[section].name)
       for (var docSection = 0; docSection < Form.sections[section].sections.length; docSection++) {
@@ -278,7 +282,6 @@ async function getEnumData(Form) {
         for (var docContent = 0; docContent < Form.sections[section].sections[docSection].contents.length; docContent++) {
           // console.log("TYPE", Form.sections[section].sections[docSection].contents[docContent].type)
           if (Form.sections[section].sections[docSection].contents[docContent].type === "Enum") {
-
             let enumName = Form.sections[section].sections[docSection].contents[docContent].name;
             // console.log("ENUM NAME", enumName)
             let enumDef = Form.sections[section].sections[docSection].contents[docContent].enumDef;
@@ -393,9 +396,6 @@ async function getSubDocuments(selectedDoc, form, userId) {
 async function getSubDocList(selectedDoc, form, userId, userRole) {
   let subDocList = {};
   let selDoc = JSON.parse(selectedDoc);
-  // for (let i = 0; i < selDoc.attributes.length; i++) {
-  //   if (selDoc.attributes[i].type === "DocList") {
-  //     if (selDoc.attributes[i].value !== null) {
   for (let s = 0; s < form.sections.length; s++) {
     if (form.sections[s].type === "DocList") {   // && selDoc.attributes[i].name === form.sections[s].name
       console.log("DOCL1004", form.sections[s].name, asistRESTApi + ConfigurationFile.enumConfig[form.sections[s].docListDef].api + selDoc.id + "&userId=" + userId,)
@@ -411,49 +411,16 @@ async function getSubDocList(selectedDoc, form, userId, userRole) {
           console.log("RES SUBDOCL: ", response.buttons);
           // subDocList[selDoc.attributes[i].name].buttons = form.sections[s].buttons;
         })
-        .catch(function (error) { });
+        .catch(function (error) {
+          let er = { totalCount: 0, documents: [] }
+          er.buttons = GridFormButtons[ConfigurationFile.rolesConfig[userRole]][form.sections[s].buttons];
+          subDocList[form.sections[s].name] = er;
+          console.log("RES SUBDOCL: ", er.buttons);
+        });
     }
   }
-  // }
-  // else {
-  //   subDocList[selDoc.attributes[i].name] = { documents: [], id: null };
-  // }
-  //   }
-  // }
   return subDocList;
 }
-/* оригинал
-async function getSubDocList(selectedDoc, form, userId) {
-  let subDocList = {};
-  let selDoc = JSON.parse(selectedDoc);
-  // for (let i = 0; i < selDoc.attributes.length; i++) {
-  //   if (selDoc.attributes[i].type === "DocList") {
-  //     if (selDoc.attributes[i].value !== null) {
-  for (let s = 0; s < form.sections.length; s++) {
-    if (form.sections[s].type === "DocList") {   // && selDoc.attributes[i].name === form.sections[s].name
-      console.log("DOCL1004", form.sections[s].name, asistRESTApi + ConfigurationFile.enumConfig[form.sections[s].docListDef].api + selDoc.id + "&userId=" + userId,)
-      await request({
-        headers: { "content-type": "application/json" },
-        url: asistRESTApi + ConfigurationFile.enumConfig[form.sections[s].docListDef].api + selDoc.id + "&userId=" + userId,
-        json: true,
-        method: "GET",
-      })
-        .then(async function (response) {
-          // console.log("RES SUBDOCL: ", response);
-          subDocList[form.sections[s].name] = response;
-          // subDocList[selDoc.attributes[i].name].buttons = form.sections[s].buttons;
-        })
-        .catch(function (error) { });
-    }
-  }
-  // }
-  // else {
-  //   subDocList[selDoc.attributes[i].name] = { documents: [], id: null };
-  // }
-  //   }
-  // }
-  return subDocList;
-}*/
 //***System main tasks functions***
 async function sendInstructionsForm(session_id, message, restore) {
   let gridForm = null;
@@ -461,19 +428,13 @@ async function sendInstructionsForm(session_id, message, restore) {
   let gridFormEnumData = null;
   if (message.gridForm !== "null") {
     gridForm = JSON.parse(JSON.parse(message.gridForm));
-    gridFormButtons =
-      GridFormButtons[ConfigurationFile.rolesConfig[message.userRole]][message.gridFormButtons];
+    gridFormButtons = GridFormButtons[ConfigurationFile.rolesConfig[message.userRole]][message.gridFormButtons];
     gridFormEnumData = await getEnumData(gridForm);
   }
   let Form = JSON.parse(JSON.parse(message.form));
-  let buttons =
-    Buttons[ConfigurationFile.rolesConfig[message.userRole]][message.buttons];
+  let buttons = Buttons[ConfigurationFile.rolesConfig[message.userRole]][message.buttons];
   var enumData = await getEnumData(Form);
-  let instructionAccountRelations = await getEnumValues(
-    "/api/InstructionAccountRelations/Gets",
-    "instructionAccountRelations",
-    "088ae9de-e330-44f7-977e-66b8e5f88e46"
-  );
+  let instructionAccountRelations = await getEnumValues("/api/InstructionAccountRelations/Gets", "instructionAccountRelations", "088ae9de-e330-44f7-977e-66b8e5f88e46");
   enumData.push(instructionAccountRelations);
   var messageType = "userTask";
   if (restore === true) {
@@ -511,18 +472,12 @@ async function sendUserForm(session_id, message, restore) {
   let gridFormEnumData = null;
   if (message.gridForm !== "null") {
     gridForm = JSON.parse(JSON.parse(message.gridForm));
-    gridFormButtons =
-      GridFormButtons[ConfigurationFile.rolesConfig[message.userRole]][
-      message.gridFormButtons
-      ];
+    gridFormButtons = GridFormButtons[ConfigurationFile.rolesConfig[message.userRole]][message.gridFormButtons];
     gridFormEnumData = await getEnumData(gridForm);
   }
   // console.log("FORM", userForm)
-  buttons =
-    Buttons[ConfigurationFile.rolesConfig[message.userRole]][message.buttons];
-
+  buttons = Buttons[ConfigurationFile.rolesConfig[message.userRole]][message.buttons];
   var enumData = await getEnumData(userForm);
-
   var messageType = "userTask";
   if (restore === true) {
     messageType = "restoreTab";
@@ -563,28 +518,17 @@ async function sendPersonForm(message, taskID, restore) {
   let gridFormEnumData = null;
   if (message.gridForm !== "null") {
     gridForm = JSON.parse(JSON.parse(message.gridForm));
-    gridFormButtons =
-      GridFormButtons[ConfigurationFile.rolesConfig[message.userRole]][
-      message.gridFormButtons
-      ];
+    gridFormButtons = GridFormButtons[ConfigurationFile.rolesConfig[message.userRole]][message.gridFormButtons];
     gridFormEnumData = await getEnumData(gridForm);
   }
-  // console.log("FORM", userForm)
-  buttons =
-    Buttons[ConfigurationFile.rolesConfig[message.userRole]][message.buttons];
-  tableFormButtons =
-    TableFormButtons[ConfigurationFile.rolesConfig[message.userRole]][
-    message.tableFormButtons
-    ];
+  buttons = Buttons[ConfigurationFile.rolesConfig[message.userRole]][message.buttons];
+  tableFormButtons = TableFormButtons[ConfigurationFile.rolesConfig[message.userRole]][message.tableFormButtons];
 
   var enumData = await getEnumData(personForm);
-
   var messageType = "userTask";
   if (restore === true) {
     messageType = "restoreTab";
   }
-  // message.messageType = messageType
-  // message.enumData = enumData
   let mes = {
     userId: message.userId,
     messageType: messageType,
@@ -623,37 +567,26 @@ async function sendAppStateForm(message, taskID, restore) {
   let gridFormEnumData = null;
   if (message.gridForm !== "null") {
     gridForm = JSON.parse(JSON.parse(message.gridForm));
-    gridFormButtons =
-      GridFormButtons[ConfigurationFile.rolesConfig[message.userRole]][
-      message.gridFormButtons
-      ];
+    gridFormButtons = GridFormButtons[ConfigurationFile.rolesConfig[message.userRole]][message.gridFormButtons];
     gridFormEnumData = await getEnumData(gridForm);
   }
   if (message.selectedDoc !== "null") {
     subDocuments = await getSubDocuments(message.selectedDoc, appStateForm, message.userId);
     if (message.taskType === "showAppStateForm") {
       subDocuments.Application = JSON.parse(message.application);
-      //subDocuments.documents = JSON.parse(message.application);
     }
     // subDocList = {"Family_Member": [{id: "9848948589", attributes: [{name: "IIN", value: "5651651", type: "Text"}]}]}
     subDocList = await getSubDocList(message.selectedDoc, appStateForm, message.userId, message.userRole);
     gridFormEnumData = await getEnumData(appStateForm);
   }
-  // console.log("FORM", userForm)
-  let buttons =
-    Buttons[ConfigurationFile.rolesConfig[message.userRole]][message.buttons];
-  tableFormButtons =
-    TableFormButtons[ConfigurationFile.rolesConfig[message.userRole]][
-    message.tableFormButtons
-    ];
+  let buttons = Buttons[ConfigurationFile.rolesConfig[message.userRole]][message.buttons];
+  tableFormButtons = TableFormButtons[ConfigurationFile.rolesConfig[message.userRole]][message.tableFormButtons];
 
   var enumData = await getEnumData(appStateForm);
   var messageType = "userTask";
   if (restore === true) {
     messageType = "restoreTab";
   }
-  // message.messageType = messageType
-  // message.enumData = enumData
   let mes = {
     userId: message.userId,
     messageType: messageType,
@@ -691,17 +624,10 @@ async function sendApplicationsGridForm(message, taskID, restore) {
   let tableFormButtons = null;
   if (message.gridForm !== "null") {
     gridForm = JSON.parse(JSON.parse(message.gridForm));
-    gridFormButtons =
-      GridFormButtons[ConfigurationFile.rolesConfig[message.userRole]][
-      message.gridFormButtons
-      ];
-    tableFormButtons =
-      TableFormButtons[ConfigurationFile.rolesConfig[message.userRole]][
-      message.tableFormButtons
-      ];
+    gridFormButtons = GridFormButtons[ConfigurationFile.rolesConfig[message.userRole]][message.gridFormButtons];
+    tableFormButtons = TableFormButtons[ConfigurationFile.rolesConfig[message.userRole]][message.tableFormButtons];
   }
-  let buttons =
-    Buttons[ConfigurationFile.rolesConfig[message.userRole]][message.buttons];
+  let buttons = Buttons[ConfigurationFile.rolesConfig[message.userRole]][message.buttons];
   var enumData = await getEnumData(appsSearchForm);
   var messageType = "userTask";
   if (restore === true) {
@@ -728,6 +654,7 @@ async function sendApplicationsGridForm(message, taskID, restore) {
     process_id: message.process_id,
     tabLabel: message.tabLabel,
     totalCount: message.totalCount,
+    stateTypeId: message.stateTypeId,
   };
   console.log("Sending uploadForms Form");
   await sendMessage(mes);
@@ -743,18 +670,11 @@ async function sendCloseMonthForm(message, taskID, restore) {
   if (message.gridForm !== "null") {
     //tableFormButtons = JSON.parse(JSON.parse(message.tableFormButtons))
     gridForm = JSON.parse(JSON.parse(message.gridForm));
-    gridFormButtons =
-      GridFormButtons[ConfigurationFile.rolesConfig[message.userRole]][
-      message.gridFormButtons
-      ];
-    tableFormButtons =
-      TableFormButtons[ConfigurationFile.rolesConfig[message.userRole]][
-      message.tableFormButtons
-      ];
+    gridFormButtons = GridFormButtons[ConfigurationFile.rolesConfig[message.userRole]][message.gridFormButtons];
+    tableFormButtons = TableFormButtons[ConfigurationFile.rolesConfig[message.userRole]][message.tableFormButtons];
   }
   // console.log("FORM", userForm)
-  let buttons =
-    Buttons[ConfigurationFile.rolesConfig[message.userRole]][message.buttons];
+  let buttons = Buttons[ConfigurationFile.rolesConfig[message.userRole]][message.buttons];
   var enumData = await getEnumData(closeMonthForm);
   var messageType = "userTask";
   if (restore === true) {
@@ -795,18 +715,11 @@ async function sendOpenBankAccountGetListForm(message, taskID, restore) {
   let tableFormButtons = null;
   if (message.gridForm !== "null") {
     gridForm = JSON.parse(JSON.parse(message.gridForm));
-    gridFormButtons =
-      GridFormButtons[ConfigurationFile.rolesConfig[message.userRole]][
-      message.gridFormButtons
-      ];
-    tableFormButtons =
-      TableFormButtons[ConfigurationFile.rolesConfig[message.userRole]][
-      message.tableFormButtons
-      ];
+    gridFormButtons = GridFormButtons[ConfigurationFile.rolesConfig[message.userRole]][message.gridFormButtons];
+    tableFormButtons = TableFormButtons[ConfigurationFile.rolesConfig[message.userRole]][message.tableFormButtons];
   }
   // console.log("FORM", userForm)
-  let buttons =
-    Buttons[ConfigurationFile.rolesConfig[message.userRole]][message.buttons];
+  let buttons = Buttons[ConfigurationFile.rolesConfig[message.userRole]][message.buttons];
   var enumData = await getEnumData(openBankAccountForm);
   var messageType = "userTask";
   if (restore === true) {
@@ -846,18 +759,11 @@ async function sendCreateOpenBankAccountRegisterForm(message, taskID, restore) {
   let tableFormButtons = null;
   if (message.gridForm !== "null") {
     gridForm = JSON.parse(JSON.parse(message.gridForm));
-    gridFormButtons =
-      GridFormButtons[ConfigurationFile.rolesConfig[message.userRole]][
-      message.gridFormButtons
-      ];
-    tableFormButtons =
-      TableFormButtons[ConfigurationFile.rolesConfig[message.userRole]][
-      message.tableFormButtons
-      ];
+    gridFormButtons = GridFormButtons[ConfigurationFile.rolesConfig[message.userRole]][message.gridFormButtons];
+    tableFormButtons = TableFormButtons[ConfigurationFile.rolesConfig[message.userRole]][message.tableFormButtons];
   }
   // console.log("FORM", userForm)
-  let buttons =
-    Buttons[ConfigurationFile.rolesConfig[message.userRole]][message.buttons];
+  let buttons = Buttons[ConfigurationFile.rolesConfig[message.userRole]][message.buttons];
   var enumData = await getEnumData(openBankAccountForm);
   var messageType = "userTask";
   if (restore === true) {
@@ -897,17 +803,10 @@ async function sendUploadGetListForm(message, taskID, restore) {
   let tableFormButtons = null;
   if (message.gridForm !== "null") {
     gridForm = JSON.parse(JSON.parse(message.gridForm));
-    gridFormButtons =
-      GridFormButtons[ConfigurationFile.rolesConfig[message.userRole]][
-      message.gridFormButtons
-      ];
-    tableFormButtons =
-      TableFormButtons[ConfigurationFile.rolesConfig[message.userRole]][
-      message.tableFormButtons
-      ];
+    gridFormButtons = GridFormButtons[ConfigurationFile.rolesConfig[message.userRole]][message.gridFormButtons];
+    tableFormButtons = TableFormButtons[ConfigurationFile.rolesConfig[message.userRole]][message.tableFormButtons];
   }
-  let buttons =
-    Buttons[ConfigurationFile.rolesConfig[message.userRole]][message.buttons];
+  let buttons = Buttons[ConfigurationFile.rolesConfig[message.userRole]][message.buttons];
   var enumData = await getEnumData(uploadForms);
   var messageType = "userTask";
   if (restore === true) {
@@ -947,17 +846,10 @@ async function sendRegistersForPaymentGetListForm(message, taskID, restore) {
   let tableFormButtons = null;
   if (message.gridForm !== "null") {
     gridForm = JSON.parse(JSON.parse(message.gridForm));
-    gridFormButtons =
-      GridFormButtons[ConfigurationFile.rolesConfig[message.userRole]][
-      message.gridFormButtons
-      ];
-    tableFormButtons =
-      TableFormButtons[ConfigurationFile.rolesConfig[message.userRole]][
-      message.tableFormButtons
-      ];
+    gridFormButtons = GridFormButtons[ConfigurationFile.rolesConfig[message.userRole]][message.gridFormButtons];
+    tableFormButtons = TableFormButtons[ConfigurationFile.rolesConfig[message.userRole]][message.tableFormButtons];
   }
-  let buttons =
-    Buttons[ConfigurationFile.rolesConfig[message.userRole]][message.buttons];
+  let buttons = Buttons[ConfigurationFile.rolesConfig[message.userRole]][message.buttons];
   var enumData = await getEnumData(registersPayForms);
   var messageType = "userTask";
   if (restore === true) {
@@ -996,17 +888,10 @@ async function sendCreateRegForPaymentForm(message, taskID, restore) {
   let tableFormButtons = null;
   if (message.gridForm !== "null") {
     gridForm = JSON.parse(JSON.parse(message.gridForm));
-    gridFormButtons =
-      GridFormButtons[ConfigurationFile.rolesConfig[message.userRole]][
-      message.gridFormButtons
-      ];
-    tableFormButtons =
-      TableFormButtons[ConfigurationFile.rolesConfig[message.userRole]][
-      message.tableFormButtons
-      ];
+    gridFormButtons = GridFormButtons[ConfigurationFile.rolesConfig[message.userRole]][message.gridFormButtons];
+    tableFormButtons = TableFormButtons[ConfigurationFile.rolesConfig[message.userRole]][message.tableFormButtons];
   }
-  let buttons =
-    Buttons[ConfigurationFile.rolesConfig[message.userRole]][message.buttons];
+  let buttons = Buttons[ConfigurationFile.rolesConfig[message.userRole]][message.buttons];
   //var enumData = await getEnumData(createRegPayForms)
   var messageType = "userTask";
   if (restore === true) {
@@ -1048,17 +933,10 @@ async function sendRegistersForPayment2GridForm(message, taskID, restore) {
   if (message.gridForm !== "null" && message.gridForm2 !== "null") {
     gridForm = JSON.parse(JSON.parse(message.gridForm));
     gridForm2 = JSON.parse(JSON.parse(message.gridForm2));
-    gridFormButtons =
-      GridFormButtons[ConfigurationFile.rolesConfig[message.userRole]][
-      message.gridFormButtons
-      ];
-    tableFormButtons =
-      TableFormButtons[ConfigurationFile.rolesConfig[message.userRole]][
-      message.tableFormButtons
-      ];
+    gridFormButtons = GridFormButtons[ConfigurationFile.rolesConfig[message.userRole]][message.gridFormButtons];
+    tableFormButtons = TableFormButtons[ConfigurationFile.rolesConfig[message.userRole]][message.tableFormButtons];
   }
-  let buttons =
-    Buttons[ConfigurationFile.rolesConfig[message.userRole]][message.buttons];
+  let buttons = Buttons[ConfigurationFile.rolesConfig[message.userRole]][message.buttons];
   var enumData = await getEnumData(registersPayForms);
   var messageType = "userTask";
   if (restore === true) {
@@ -1090,80 +968,6 @@ async function sendRegistersForPayment2GridForm(message, taskID, restore) {
   };
   console.log("Sending uploadForms Form", mes);
   await sendMessage(mes);
-}
-// Collect data related to jasper report and send to client
-//загрузка/прикрепленных файлов из локальной директории
-async function sendContractsForm(session_id, message, restore) {
-  docsArr = [];
-  let gridForm = null;
-  let gridFormButtons = null;
-  let gridFormEnumData = null;
-  if (message.gridForm !== "null") {
-    gridForm = JSON.parse(JSON.parse(message.gridForm));
-    gridFormButtons =
-      GridFormButtons[ConfigurationFile.rolesConfig[message.userRole]][
-      message.gridFormButtons
-      ];
-    gridFormEnumData = await getEnumData(gridForm);
-  }
-  let Form = JSON.parse(JSON.parse(message.form));
-  let buttons =
-    Buttons[ConfigurationFile.rolesConfig[message.userRole]][message.buttons];
-  var enumData = await getEnumData(Form);
-  let lastFileReaded = false;
-  var docsArr = [];
-  if (message.selectedDoc !== "null") {
-    let parsedSelDoc = JSON.parse(message.selectedDoc);
-    let dirPath = filesDirectory + parsedSelDoc.files_directory;
-    var files = fs.readdirSync(dirPath);
-
-    for (let f = 0; f < files.length; f++) {
-      var content = fs.readFileSync(dirPath + "/" + files[f], "base64");
-      let extension = path.extname(files[f]);
-      docsArr.push({
-        fileName: files[f],
-        extension: extension,
-        content: content,
-      });
-      if (f === files.length) {
-        lastFileReaded = true;
-      }
-    }
-    console.log("DOCS", files, dirPath);
-  }
-  if (message.selectedDoc === "null") {
-    lastFileReaded = true;
-  }
-  var messageType = "userTask";
-  if (restore === true) {
-    messageType = "restoreTab";
-  }
-  if ((lastFileReaded = true)) {
-    let mes = {
-      userId: message.userId,
-      messageType: messageType,
-      taskType: message.taskType,
-      enumData: enumData,
-      gridFormEnumData: gridFormEnumData,
-      Form: Form,
-      gridForm: gridForm,
-      buttons: buttons,
-      gridFormButtons: gridFormButtons,
-      selectedDoc: message.selectedDoc,
-      docList: message.docList,
-      savedDocs: docsArr,
-      size: message.size,
-      page: message.page,
-      formType: message.formType,
-      taskID: message.taskID,
-      docId: message.docId,
-      session_id: session_id,
-      process_id: message.process_id,
-      tabLabel: message.tabLabel,
-    };
-    console.log("Sending Contracts Form");
-    await sendMessage(mes);
-  }
 }
 //сохранения отсканированных файлов
 async function saveContract(incomingJson) {
@@ -1216,7 +1020,7 @@ async function saveContract(incomingJson) {
     }
   }
 }
-// удаления отсканированных файлов из директории
+//удаления отсканированных файлов из директории
 async function deleteSavedDoc(incomingJson) {
   let dirPath =
     filesDirectory + incomingJson.directory + "/" + incomingJson.fileName;
@@ -1266,8 +1070,6 @@ async function downloadAccToExcel(incomingJson) {
       // ERROR
     });
 }
-
-// ***Custom functions***
 // send message to user
 async function sendMessage(message) {
   console.log("SEND MESSAGE", message.userId);
@@ -1516,10 +1318,12 @@ webSocketServer.on("connection", function (ws) {
         incomingJson.processKey,
         incomingJson.variables
       );
-    } else if (incomingJson.commandType === "completeTask") {
+    }
+    else if (incomingJson.commandType === "completeTask") {
       console.log("COMPLETE TASK", incomingJson.variables);
       completeTask(incomingJson.variables, incomingJson.taskID);
-    } else if (incomingJson.commandType === "getMenu") {
+    }
+    else if (incomingJson.commandType === "getMenu") {
       // console.log("Sending routes to", id)
       clients[incomingJson.session_id].userRole =
         incomingJson.userProfile.userRole;
@@ -1527,7 +1331,8 @@ webSocketServer.on("connection", function (ws) {
       clients[incomingJson.session_id].session_id = incomingJson.session_id;
       let routes = await generateMenu(incomingJson.userProfile);
       clients[id].send(JSON.stringify({ messageType: "Menu", routes }));
-    } else if (incomingJson.commandType === "restoreSession") {
+    }
+    else if (incomingJson.commandType === "restoreSession") {
       console.log(
         "restoreSession for ",
         ConfigurationFile.rolesConfig[incomingJson.userRole],
@@ -1538,17 +1343,23 @@ webSocketServer.on("connection", function (ws) {
         incomingJson.session_id,
         incomingJson.userRole
       );
-    } else if (incomingJson.commandType === "insertForm") {
+    }
+    else if (incomingJson.commandType === "insertForm") {
       insertForm(incomingJson);
-    } else if (incomingJson.commandType === "saveContract") {
+    }
+    else if (incomingJson.commandType === "saveContract") {
       saveContract(incomingJson);
-    } else if (incomingJson.commandType === "clearDocsArray") {
+    }
+    else if (incomingJson.commandType === "clearDocsArray") {
       saveContract(incomingJson);
-    } else if (incomingJson.commandType === "deleteSavedDoc") {
+    }
+    else if (incomingJson.commandType === "deleteSavedDoc") {
       deleteSavedDoc(incomingJson);
-    } else if (incomingJson.commandType === "downloadAccToExcel") {
+    }
+    else if (incomingJson.commandType === "downloadAccToExcel") {
       downloadAccToExcel(incomingJson);
-    } else {
+    }
+    else {
       console.log("Task", incomingJson);
     }
   });
@@ -1563,7 +1374,6 @@ async function sendRabbitMessage(msg) {
   let message = JSON.parse(msg);
   // console.log("MESSAGE", message)
   let taskVariables = JSON.parse(message.taskVariables);
-
   let session_id = message.session_id;
   let taskType = taskVariables.taskType;
   if (
@@ -1575,17 +1385,21 @@ async function sendRabbitMessage(msg) {
     taskType === "showInstructionsRegistrarsViewForm"
   ) {
     await sendInstructionsForm(session_id, message, false);
-  } else if (
+  }
+  else if (
     taskType === "showCreateUser" ||
     taskType === "showSearchUser" ||
     taskType === "showEditUser"
   ) {
     await sendUserForm(session_id, message, false);
-  } else if (taskType === "setRoleToUser") {
+  }
+  else if (taskType === "setRoleToUser") {
     await setRoleToUser(session_id, message);
-  } else if (taskType === "showToast") {
+  }
+  else if (taskType === "showToast") {
     await sendToast(taskVariables, message.taskID);
-  } else if (
+  }
+  else if (
     taskType === "showPersonSearchForm" ||
     taskType === "showPersonCreatForm" ||
     taskType === "showPersonFilterForm" ||
@@ -1593,7 +1407,8 @@ async function sendRabbitMessage(msg) {
     taskType === "showPersonSaveForm"
   ) {
     await sendPersonForm(taskVariables, message.taskID);
-  } else if (
+  }
+  else if (
     taskType === "showApplicationForm" ||
     taskType === "showAppStateForm" ||
     taskType === "showAppStateSaveForm" ||
@@ -1604,48 +1419,57 @@ async function sendRabbitMessage(msg) {
     taskType === "showTrusteePersonForm"
   ) {
     await sendAppStateForm(taskVariables, message.taskID);
-  } else if (taskType === "showApplicationsGridForm") {
+  }
+  else if (taskType === "showApplicationsGridForm") {
     await sendApplicationsGridForm(taskVariables, message.taskID);
-  } else if (
+  }
+  else if (
     taskType === "showCloseMonthCreateParamForm" ||
     taskType === "showCloseMonthSearchParamForm" ||
     taskType === "showCloseMonthOnlyReadForm" ||
     taskType === "showCloseMonthGetListGridForm"
   ) {
     await sendCloseMonthForm(taskVariables, message.taskID);
-  } else if (
+  }
+  else if (
     taskType === "showOpenBanckAccountGetListForm" ||
     taskType === "showOpenBankDistrRegisterForm"
   ) {
     await sendOpenBankAccountGetListForm(taskVariables, message.taskID);
-  } else if (
+  }
+  else if (
     taskType === "showOpenBankAccountPreviewGridForm" ||
     taskType === "showOpenBankAccountRegisterForm" ||
     taskType === "showOpenBankAccDistrAppForms"
   ) {
     await sendCreateOpenBankAccountRegisterForm(taskVariables, message.taskID);
-  } else if (
+  }
+  else if (
     taskType === "showUploadGetListGridForm" ||
     taskType === "showUploadDistrDetailGridForm" ||
     taskType === "showUploadBankAccountFileForm" ||
     taskType === "showUploadBankAccountSendFileForm"
   ) {
     await sendUploadGetListForm(taskVariables, message.taskID);
-  } else if (
+  }
+  else if (
     taskType === "showRegistersForPaymentGetListForm" ||
     taskType === "showRegistersForPaymentDistrForm"
   ) {
     await sendRegistersForPaymentGetListForm(taskVariables, message.taskID);
-  } else if (taskType === "showRegistersForPaymentDistrForm1") {
+  }
+  else if (taskType === "showRegistersForPaymentDistrForm1") {
     await sendRegistersForPayment2GridForm(taskVariables, message.taskID);
-  } else if (
+  }
+  else if (
     taskType === "showRegForPayCreatDetailForm" ||
     taskType === "showPreviewRegForPayDocListForm" ||
     taskType === "showRegForPayAssignDetailForm" ||
     taskType === "showRegForPayCreatDistrForm"
   ) {
     await sendCreateRegForPaymentForm(taskVariables, message.taskID);
-  } else if (taskType === "showToast") {
+  }
+  else if (taskType === "showToast") {
     await sendToast(taskVariables, message.taskID);
   }
 }

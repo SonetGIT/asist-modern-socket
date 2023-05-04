@@ -216,6 +216,15 @@
         ]
       }
     },
+    "4D765A80-34BF-4BCE-8400-BA9E4B62F88E": {
+      "api": "/ASIST-MODERN-API/api/Document/GetIncome?appStateId="
+    },
+    "70B3FBED-5C6D-4907-95DB-1D8747BC02FC": {
+      "api": "/ASIST-MODERN-API/api/Document/GetCurrentKON?appStateId="
+    },
+    "5454264E-D5F7-4D22-A3EB-F09CB0DF2E81": {
+      "api": "/ASIST-MODERN-API/api/Document/GetNewKON?appStateId="
+    },
     "959762D8-FEB6-4247-986D-7ECE63EED1AD": {
       "api": "/ASIST-MODERN-API/api/Document/GetFamilyMember?appStateId="
     },

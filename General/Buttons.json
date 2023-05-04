@@ -49,6 +49,10 @@
     ],
     "AppStateBtn": [
       {
+        "name": "printKON",
+        "label": "Печать КОН"
+      },
+      {
         "name": "createTrusteePerson",
         "label": "Доверительное лицо"
       },
@@ -67,6 +71,14 @@
       {
         "name": "createIncomeDoc",
         "label": "Добавить доход"
+      },
+      {
+        "name": "refusState",
+        "label": "На доработку"
+      },
+      {
+        "name": "dataMSE",
+        "label": "Данные из ИСМСЭ"
       },
       {
         "name": "cancel",

@@ -45,7 +45,7 @@
     {
       "type": "Doc",
       "name": "Person",
-      "label": "Гражданин",
+      "label": "",
       "sections": [
         {
           "type": "Section",
@@ -167,7 +167,7 @@
     {
       "type": "Doc",
       "name": "Application_State",
-      "label": "Анкета заявления",
+      "label": "",
       "sections": [
         {
           "type": "Section",
@@ -964,7 +964,7 @@
     {
       "type": "Doc",
       "name": "Trustee",
-      "label": "Доверительное лицо",
+      "label": "",
       "sections": [
         {
           "type": "Section",
@@ -1085,9 +1085,73 @@
     },
     {
       "type": "DocList",
+      "docListDef": "70B3FBED-5C6D-4907-95DB-1D8747BC02FC",
+      "name": "Coefficient_Value",
+      "label": "",
+      "buttons": "null",
+      "sections": [
+        {
+          "type": "Section",
+          "name": "Coefficient_Value_section_data",
+          "label": "Таблица КОН",
+          "contents": [
+            {
+              "type": "Text",
+              "name": "IndicatorType",
+              "label": "Наименование",
+              "edit": false,
+              "show": true,
+              "required": false
+            },
+            {
+              "type": "Float",
+              "name": "Value",
+              "label": "Значение",
+              "edit": false,
+              "show": true,
+              "required": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "DocList",
+      "docListDef": "5454264E-D5F7-4D22-A3EB-F09CB0DF2E81",
+      "name": "New_Coefficient_Value",
+      "label": "",
+      "buttons": "null",
+      "sections": [
+        {
+          "type": "Section",
+          "name": "New_Coefficient_Value_section_data",
+          "label": "Новая таблица КОН",
+          "contents": [
+            {
+              "type": "Text",
+              "name": "IndicatorType",
+              "label": "Наименование",
+              "edit": false,
+              "show": true,
+              "required": false
+            },
+            {
+              "type": "Float",
+              "name": "Value",
+              "label": "Значение",
+              "edit": false,
+              "show": true,
+              "required": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "DocList",
       "docListDef": "959762D8-FEB6-4247-986D-7ECE63EED1AD",
       "name": "Family_Member",
-      "label": "Член домохозяйства",
+      "label": "",
       "buttons": "FMGridBtn",
       "sections": [
         {
@@ -1196,7 +1260,7 @@
       "type": "DocList",
       "docListDef": "F33A1105-B5D6-4A3C-A183-91E85EDFDE69",
       "name": "Income",
-      "label": "Доход",
+      "label": "",
       "buttons": "IncomeGridBtn",
       "sections": [
         {
@@ -1294,7 +1358,7 @@
       "type": "DocList",
       "docListDef": "1B196A9B-8527-4FF0-B0F2-1A715931A88C",
       "name": "Land_Plot",
-      "label": "Земельный участок",
+      "label": "",
       "buttons": "LandPlotGridBtn",
       "sections": [
         {
@@ -1380,6 +1444,62 @@
               "type": "Text",
               "name": "DeadInfoLandPlot",
               "label": "Дополнительная информация",
+              "edit": false,
+              "show": true,
+              "required": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "DocList",
+      "docListDef": "4D765A80-34BF-4BCE-8400-BA9E4B62F88E",
+      "name": "InfoFromISMSE",
+      "label": "",
+      "buttons": "null",
+      "sections": [
+        {
+          "type": "Section",
+          "name": "InfoFromISMSE_section_data",
+          "label": "Данные из ИСМСЭ",
+          "contents": [
+            {
+              "type": "DateTime",
+              "name": "Date",
+              "label": "Дата генерации запроса",
+              "edit": false,
+              "show": true,
+              "required": false
+            },
+            {
+              "type": "Text",
+              "name": "NameMSEK",
+              "label": "Нименование МСЭК",
+              "edit": false,
+              "show": true,
+              "required": false
+            },
+            {
+              "type": "Text",
+              "name": "DateOfExam",
+              "label": "Дата освидетельствование",
+              "edit": false,
+              "show": true,
+              "required": false
+            },
+            {
+              "type": "Text",
+              "name": "TypeExam",
+              "label": "Тип освидетельствование",
+              "edit": false,
+              "show": true,
+              "required": false
+            },
+            {
+              "type": "Text",
+              "name": "DisGroup",
+              "label": "Группа инвалидности",
               "edit": false,
               "show": true,
               "required": false

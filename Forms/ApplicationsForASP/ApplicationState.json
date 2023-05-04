@@ -1082,6 +1082,431 @@
           ]
         }
       ]
+    },
+    {
+      "type": "DocList",
+      "docListDef": "70B3FBED-5C6D-4907-95DB-1D8747BC02FC",
+      "name": "Coefficient_Value",
+      "label": "",
+      "buttons": "null",
+      "sections": [
+        {
+          "type": "Section",
+          "name": "Coefficient_Value_section_data",
+          "label": "Таблица КОН",
+          "contents": [
+            {
+              "type": "Text",
+              "name": "IndicatorType",
+              "label": "Наименование",
+              "edit": false,
+              "show": true,
+              "required": false
+            },
+            {
+              "type": "Float",
+              "name": "Value",
+              "label": "Значение",
+              "edit": false,
+              "show": true,
+              "required": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "DocList",
+      "docListDef": "5454264E-D5F7-4D22-A3EB-F09CB0DF2E81",
+      "name": "New_Coefficient_Value",
+      "label": "",
+      "buttons": "null",
+      "sections": [
+        {
+          "type": "Section",
+          "name": "New_Coefficient_Value_section_data",
+          "label": "Новая таблица КОН",
+          "contents": [
+            {
+              "type": "Text",
+              "name": "IndicatorType",
+              "label": "Наименование",
+              "edit": false,
+              "show": true,
+              "required": false
+            },
+            {
+              "type": "Float",
+              "name": "Value",
+              "label": "Значение",
+              "edit": false,
+              "show": true,
+              "required": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "DocList",
+      "docListDef": "959762D8-FEB6-4247-986D-7ECE63EED1AD",
+      "name": "Family_Member",
+      "label": "",
+      "buttons": "FMGridBtn",
+      "sections": [
+        {
+          "type": "Section",
+          "name": "Family_Member_section_data",
+          "label": "Данные членов домохозяйства",
+          "contents": [
+            {
+              "type": "Text",
+              "name": "IIN",
+              "label": "ПИН",
+              "edit": false,
+              "show": true,
+              "required": false
+            },
+            {
+              "type": "Text",
+              "name": "Last_Name",
+              "label": "Фамилия",
+              "edit": false,
+              "show": true,
+              "required": false
+            },
+            {
+              "type": "Text",
+              "name": "First_Name",
+              "label": "Имя",
+              "edit": false,
+              "show": true,
+              "required": false
+            },
+            {
+              "type": "Text",
+              "name": "Middle_Name",
+              "label": "Отчество",
+              "edit": false,
+              "show": true,
+              "required": false
+            },
+            {
+              "type": "DateTime",
+              "name": "Date_of_Birth",
+              "label": "Дата рождения",
+              "edit": false,
+              "show": true,
+              "required": true
+            },
+            {
+              "type": "Enum",
+              "name": "Sex",
+              "label": "Пол",
+              "enumDef": "C780CE23-AC09-4CC3-8147-7779F6D80B65",
+              "edit": false,
+              "show": true,
+              "required": true
+            },
+            {
+              "type": "Enum",
+              "name": "Family_Membership",
+              "label": "Родственные отношения",
+              "enumDef": "430E562F-A3C3-4911-A752-C1F0F18E5A22",
+              "edit": false,
+              "show": true,
+              "required": false
+            },
+            {
+              "type": "Enum",
+              "name": "Disability",
+              "label": "Категория",
+              "enumDef": "F38FC8F6-E925-434E-8DFC-EF8937A0BE9B",
+              "edit": false,
+              "show": true,
+              "required": false
+            },
+            {
+              "type": "Enum",
+              "name": "DisablilityGroupe",
+              "label": "Группы инвалидности",
+              "enumDef": "37D69002-73CA-4507-9227-A57EA262B536",
+              "edit": false,
+              "show": true,
+              "required": false
+            },
+            {
+              "type": "Enum",
+              "name": "employment",
+              "label": "Сфера занятости",
+              "enumDef": "3E3E0163-23BD-4B9C-A118-3648283C1DE1",
+              "edit": false,
+              "show": true,
+              "required": false
+            },
+            {
+              "type": "Text",
+              "name": "DeadInfoFamMem",
+              "label": "Дополнительная информация",
+              "edit": false,
+              "show": true,
+              "required": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "DocList",
+      "docListDef": "F33A1105-B5D6-4A3C-A183-91E85EDFDE69",
+      "name": "Income",
+      "label": "",
+      "buttons": "IncomeGridBtn",
+      "sections": [
+        {
+          "type": "Section",
+          "name": "Income_section_data",
+          "label": "Доход",
+          "contents": [
+            {
+              "type": "Text",
+              "name": "IIN",
+              "label": "ПИН",
+              "edit": false,
+              "show": true,
+              "required": false
+            },
+            {
+              "type": "Text",
+              "name": "Last_Name",
+              "label": "Фамилия",
+              "edit": false,
+              "show": true,
+              "required": false
+            },
+            {
+              "type": "Text",
+              "name": "First_Name",
+              "label": "Имя",
+              "edit": false,
+              "show": true,
+              "required": false
+            },
+            {
+              "type": "Text",
+              "name": "Middle_Name",
+              "label": "Отчество",
+              "edit": false,
+              "show": true,
+              "required": false
+            },
+            {
+              "type": "DateTime",
+              "name": "Date_of_Birth",
+              "label": "Дата рождения",
+              "edit": false,
+              "show": true,
+              "required": true
+            },
+            {
+              "type": "Enum",
+              "name": "Sex",
+              "label": "Пол",
+              "enumDef": "C780CE23-AC09-4CC3-8147-7779F6D80B65",
+              "edit": false,
+              "show": true,
+              "required": true
+            },
+            {
+              "type": "Text",
+              "name": "For_The_Year",
+              "label": "Всего за 12 месяцев",
+              "edit": false,
+              "show": true,
+              "required": false
+            },
+            {
+              "type": "Enum",
+              "name": "TypeIncome",
+              "label": "Вид дохода",
+              "enumDef": "5B4BDDC3-DB14-4DEB-B20A-D945E10137F0",
+              "edit": false,
+              "show": true,
+              "required": false
+            },
+            {
+              "type": "Text",
+              "name": "IncomePlace",
+              "label": "Источник дохода(Место работы)",
+              "edit": false,
+              "show": true,
+              "required": false
+            },
+            {
+              "type": "Text",
+              "name": "DeadInfoIncome",
+              "label": "Дополнительная информация",
+              "edit": false,
+              "show": true,
+              "required": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "DocList",
+      "docListDef": "1B196A9B-8527-4FF0-B0F2-1A715931A88C",
+      "name": "Land_Plot",
+      "label": "",
+      "buttons": "LandPlotGridBtn",
+      "sections": [
+        {
+          "type": "Section",
+          "name": "Land_Plot_section_data",
+          "label": "Земельный участок",
+          "contents": [
+            {
+              "type": "Text",
+              "name": "IIN",
+              "label": "ПИН",
+              "edit": false,
+              "show": true,
+              "required": false
+            },
+            {
+              "type": "Text",
+              "name": "Last_Name",
+              "label": "Фамилия",
+              "edit": false,
+              "show": true,
+              "required": false
+            },
+            {
+              "type": "Text",
+              "name": "First_Name",
+              "label": "Имя",
+              "edit": false,
+              "show": true,
+              "required": false
+            },
+            {
+              "type": "Text",
+              "name": "Middle_Name",
+              "label": "Отчество",
+              "edit": false,
+              "show": true,
+              "required": false
+            },
+            {
+              "type": "DateTime",
+              "name": "Date_of_Birth",
+              "label": "Дата рождения",
+              "edit": false,
+              "show": true,
+              "required": true
+            },
+            {
+              "type": "Enum",
+              "name": "Sex",
+              "label": "Пол",
+              "enumDef": "C780CE23-AC09-4CC3-8147-7779F6D80B65",
+              "edit": false,
+              "show": true,
+              "required": true
+            },
+            {
+              "type": "Enum",
+              "name": "Land_Ownership",
+              "label": "Вид владения земельным участком",
+              "enumDef": "06FA62A9-5B4D-4B38-B297-EC3741E0D896",
+              "edit": false,
+              "show": true,
+              "required": false
+            },
+            {
+              "type": "Text",
+              "name": "Area",
+              "label": "Площадь соток",
+              "edit": false,
+              "show": true,
+              "required": false
+            },
+            {
+              "type": "Bool",
+              "name": "irrigated",
+              "label": "Орошаемый (да/нет)",
+              "edit": false,
+              "show": true,
+              "required": false
+            },
+            {
+              "type": "Text",
+              "name": "DeadInfoLandPlot",
+              "label": "Дополнительная информация",
+              "edit": false,
+              "show": true,
+              "required": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "DocList",
+      "docListDef": "4D765A80-34BF-4BCE-8400-BA9E4B62F88E",
+      "name": "InfoFromISMSE",
+      "label": "",
+      "buttons": "null",
+      "sections": [
+        {
+          "type": "Section",
+          "name": "InfoFromISMSE_section_data",
+          "label": "Данные из ИСМСЭ",
+          "contents": [
+            {
+              "type": "DateTime",
+              "name": "Date",
+              "label": "Дата генерации запроса",
+              "edit": false,
+              "show": true,
+              "required": false
+            },
+            {
+              "type": "Text",
+              "name": "NameMSEK",
+              "label": "Нименование МСЭК",
+              "edit": false,
+              "show": true,
+              "required": false
+            },
+            {
+              "type": "Text",
+              "name": "DateOfExam",
+              "label": "Дата освидетельствование",
+              "edit": false,
+              "show": true,
+              "required": false
+            },
+            {
+              "type": "Text",
+              "name": "TypeExam",
+              "label": "Тип освидетельствование",
+              "edit": false,
+              "show": true,
+              "required": false
+            },
+            {
+              "type": "Text",
+              "name": "DisGroup",
+              "label": "Группа инвалидности",
+              "edit": false,
+              "show": true,
+              "required": false
+            }
+          ]
+        }
+      ]
     }
   ]
 }
