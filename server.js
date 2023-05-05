@@ -272,37 +272,49 @@ async function getObjectTypeData(id, varName) {
   return objectTypeData;
 }
 async function getEnumData(Form) {
-  console.log("Form", Form.formName);
+  // console.log("Form", Form.formName);
   var enumData = [];
-  for (var section = 0; section < Form.sections.length; section++) {
-    if (Form.sections[section].type === "Doc" || Form.sections[section].type === "DocList") {
-      console.log("TYPE1004", Form.sections[section].name)
-      for (var docSection = 0; docSection < Form.sections[section].sections.length; docSection++) {
-        // console.log("DOCS", Form.sections[section].sections[docSection].name)
-        for (var docContent = 0; docContent < Form.sections[section].sections[docSection].contents.length; docContent++) {
-          // console.log("TYPE", Form.sections[section].sections[docSection].contents[docContent].type)
-          if (Form.sections[section].sections[docSection].contents[docContent].type === "Enum") {
-            let enumName = Form.sections[section].sections[docSection].contents[docContent].name;
-            // console.log("ENUM NAME", enumName)
-            let enumDef = Form.sections[section].sections[docSection].contents[docContent].enumDef;
-            let apiName = enumDataApi + enumDef;
-            let newEnumList = await getEnumValues(apiName, enumName, enumDef);
-            enumData.push(newEnumList);
-          }
-        }
-      }
-    }
-    else {
-      for (var item = 0; item < Form.sections[section].contents.length; item++) {
-        // console.log("ENUMDEF NAME", Form.sections[section].contents[item].name, "ENUMDEF", Form.sections[section].contents[item].enumDef)
-        if (Form.sections[section].contents[item].type === "Enum") {
-          let enumName = Form.sections[section].contents[item].name;
-          // console.log("ENUM NAME", enumName)
-          let enumDef = Form.sections[section].contents[item].enumDef;
-          // let apiName = ConfigurationFile.enumConfig[enumDef].apiName;
+  for (var section1 = 0; section1 < Form.sections.length; section1++) {
+    // 1 Level
+    if (Form.sections[section1].type !== "Doc" && Form.sections[section1].type !== "DocList") {
+      console.log("TYPE", Form.sections[section1].type)
+      for (var content1 = 0; content1 < Form.sections[section1].contents.length; content1++) {
+        if (Form.sections[section1].contents[content1].type === "Enum") {
+          let enumName = Form.sections[section1].contents[content1].name;
+          let enumDef = Form.sections[section1].contents[content1].enumDef;
           let apiName = enumDataApi + enumDef;
           let newEnumList = await getEnumValues(apiName, enumName, enumDef);
           enumData.push(newEnumList);
+        }
+      }
+    }
+    // 2nd Level
+    else if (Form.sections[section1].type === "Doc" || Form.sections[section1].type === "DocList") {
+      for (var section2 = 0; section2 < Form.sections[section1].sections.length; section2++) {
+        if (Form.sections[section1].sections[section2].type !== "Doc" && Form.sections[section1].sections[section2].type !== "DocList") {
+          for (var content2 = 0; content2 < Form.sections[section1].sections[section2].contents.length; content2++) {
+            if (Form.sections[section1].sections[section2].contents[content2].type === "Enum") {
+              let enumName = Form.sections[section1].sections[section2].contents[content2].name;
+              let enumDef = Form.sections[section1].sections[section2].contents[content2].enumDef;
+              let apiName = enumDataApi + enumDef;
+              let newEnumList = await getEnumValues(apiName, enumName, enumDef);
+              enumData.push(newEnumList);
+            }
+          }
+        }
+        // 3rd Level
+        else if (Form.sections[section1].sections[section2].type === "Doc" || Form.sections[section1].sections[section2].type === "DocList") {
+          for (var section3 = 0; section3 < Form.sections[section1].sections[section2].length; section3++) {
+            for (var content3 = 0; content3 < Form.sections[section1].sections[section2].sections[section3].contents.length; content3++) {
+              if (Form.sections[section1].sections[section2].sections[section3].contents[content3].type === "Enum") {
+                let enumName = Form.sections[section1].sections[section2].sections[section3].contents[content3].name;
+                let enumDef = Form.sections[section1].sections[section2].sections[section3].contents[content3].enumDef;
+                let apiName = enumDataApi + enumDef;
+                let newEnumList = await getEnumValues(apiName, enumName, enumDef);
+                enumData.push(newEnumList);
+              }
+            }
+          }
         }
       }
     }
@@ -394,32 +406,91 @@ async function getSubDocuments(selectedDoc, form, userId) {
   return subDocuments;
 }
 async function getSubDocList(selectedDoc, form, userId, userRole) {
+  // console.log("SDOC", selectedDoc)
   let subDocList = {};
   let selDoc = JSON.parse(selectedDoc);
-  for (let s = 0; s < form.sections.length; s++) {
-    if (form.sections[s].type === "DocList") {   // && selDoc.attributes[i].name === form.sections[s].name
-      console.log("DOCL1004", form.sections[s].name, asistRESTApi + ConfigurationFile.enumConfig[form.sections[s].docListDef].api + selDoc.id + "&userId=" + userId,)
-      await request({
-        headers: { "content-type": "application/json" },
-        url: asistRESTApi + ConfigurationFile.enumConfig[form.sections[s].docListDef].api + selDoc.id + "&userId=" + userId,
-        json: true,
-        method: "GET",
-      })
-        .then(async function (response) {
-          response.buttons = GridFormButtons[ConfigurationFile.rolesConfig[userRole]][form.sections[s].buttons];
-          subDocList[form.sections[s].name] = response;
-          console.log("RES SUBDOCL: ", response.buttons);
-          // subDocList[selDoc.attributes[i].name].buttons = form.sections[s].buttons;
-        })
-        .catch(function (error) {
-          let er = { totalCount: 0, documents: [] }
-          er.buttons = GridFormButtons[ConfigurationFile.rolesConfig[userRole]][form.sections[s].buttons];
-          subDocList[form.sections[s].name] = er;
-          console.log("RES SUBDOCL: ", er.buttons);
-        });
+
+  for (let s1 = 0; s1 < form.sections.length; s1++) {
+    if (form.sections[s1].type === "DocList") { // 1 Level
+      let name = form.sections[s1].name
+      let api = form.sections[s1].docListDef.api
+      let url = ConfigurationFile.enumConfig[api] + selDoc.id + "&userId=" + userId
+      let gButtons = GridFormButtons[ConfigurationFile.rolesConfig[userRole]][form.sections[s1].buttons]
+      let listItem = await fetchSubDocList(url, gButtons)
+      subDocList[name] = listItem
+    }
+    if (form.sections[s1].type === "Doc") { // 2 Level
+      for (let s2 = 0; s2 < form.sections[s1].sections[s2].length; s2++) {
+        console.log("DOC", form.sections[s1].sections[s2].name)
+        if (form.sections[s1].sections[s2].type === "DocList") {
+          let name = form.sections[s1].sections[s2].name
+          let docId = get2LevelDocId(selDoc, name)
+          let api = ConfigurationFile.enumConfig[form.sections[s1].sections[s2].docListDef].api
+          // console.log("API", api)
+          let url = api + docId + "&userId=" + userId
+          let gButtons = GridFormButtons[ConfigurationFile.rolesConfig[userRole]][form.sections[s1].sections[s2].buttons]
+          let listItem = await fetchSubDocList(url, gButtons)
+          subDocList[name] = listItem
+        }
+        else if (form.sections[s1].sections[s2].type === "Doc") {
+          for (let s3 = 0; s3 < form.sections[s1].sections[s2].sections.length; s3++) {
+            if (form.sections[s1].sections[s2].sections[s3].type === "DocList") {
+              let name = form.sections[s1].sections[s2].sections[s3].name
+              let docId = get3LevelDocId(selDoc,)
+              let api = ConfigurationFile.enumConfig[form.sections[s1].sections[s2].sections[s3].docListDef].api
+              let url = api + docId + "&userId=" + userId
+              console.log("API", api)
+              let gButtons = GridFormButtons[ConfigurationFile.rolesConfig[userRole]][form.sections[s1].sections[s2].sections[s3].buttons]
+              let listItem = await fetchSubDocList(url, gButtons)
+              subDocList[name] = listItem
+            }
+          }
+        }
+      }
     }
   }
   return subDocList;
+}
+async function get2LevelDocId(doc, name) {
+  for (let i1 = 0; i1 < doc.attributes.length; i1++) {
+    if (doc.attributes[i1].type === "DocList" && doc.attributes[i1].name === name) {
+      // console.log("ID", doc.attributes[i1].id)
+      return doc.attributes[i1].id
+    }
+  }
+}
+async function get3LevelDocId(doc, name) {
+  for (let i1 = 0; i1 < doc.attributes.length; i1++) {
+    if (doc.attributes[i1].type === "Doc") {
+      for (let i2 = 0; i2 < doc.attributes[i1].attributes.length; i2++) {
+        if (doc.attributes[i1].attributes[i2].type === "DocList" && doc.attributes[i1].attributes[i2].type === name) {
+          return doc.attributes[i1].attributes[i2].id
+        }
+      }
+    }
+  }
+}
+async function fetchSubDocList(url, buttons) {
+  // console.log("URL", url)
+  let resp = {}
+  await request({
+    headers: { "content-type": "application/json" },
+    url: asistRESTApi + url,
+    json: true,
+    method: "GET",
+  })
+    .then(async function (response) {
+      response.buttons = buttons;
+      resp = response;
+      // console.log("RES SUBDOCL: ", response.buttons);
+    })
+    .catch(function (error) {
+      let er = { totalCount: 0, documents: [] }
+      er.buttons = buttons;
+      resp = er;
+      // console.log("RES SUBDOCL ERR: ", er.buttons);
+    });
+  return resp
 }
 //***System main tasks functions***
 async function sendInstructionsForm(session_id, message, restore) {
@@ -571,10 +642,10 @@ async function sendAppStateForm(message, taskID, restore) {
     gridFormEnumData = await getEnumData(gridForm);
   }
   if (message.selectedDoc !== "null") {
-    subDocuments = await getSubDocuments(message.selectedDoc, appStateForm, message.userId);
-    if (message.taskType === "showAppStateForm") {
-      subDocuments.Application = JSON.parse(message.application);
-    }
+    // subDocuments = await getSubDocuments(message.selectedDoc, appStateForm, message.userId);
+    // if (message.taskType === "showAppStateForm") {
+    //   subDocuments.Application = JSON.parse(message.application);
+    // }
     // subDocList = {"Family_Member": [{id: "9848948589", attributes: [{name: "IIN", value: "5651651", type: "Text"}]}]}
     subDocList = await getSubDocList(message.selectedDoc, appStateForm, message.userId, message.userRole);
     gridFormEnumData = await getEnumData(appStateForm);
