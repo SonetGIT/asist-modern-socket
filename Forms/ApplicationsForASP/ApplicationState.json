@@ -46,6 +46,7 @@
       "type": "Doc",
       "name": "Person",
       "label": "Гражданин",
+      "addToAttributes": false,
       "sections": [
         {
           "type": "Section",
@@ -168,6 +169,7 @@
       "type": "Doc",
       "name": "Application_State",
       "label": "Адресные данные заявителя",
+      "addToAttributes": true,
       "sections": [
         {
           "type": "Section",
@@ -960,128 +962,6 @@
           ]
         },
         {
-          "type": "Doc",
-          "name": "Trustee",
-          "label": "Доверительное лицо",
-          "sections": [
-            {
-              "type": "Section",
-              "name": "AppTrustee",
-              "label": "Данные жоверительного лица",
-              "contents": [
-                {
-                  "type": "Text",
-                  "name": "IIN",
-                  "label": "ПИН",
-                  "edit": false,
-                  "show": true,
-                  "required": false
-                },
-                {
-                  "type": "Text",
-                  "name": "SIN",
-                  "label": "СИН",
-                  "edit": false,
-                  "show": true,
-                  "required": false
-                },
-                {
-                  "type": "Text",
-                  "name": "Last_Name",
-                  "label": "Фамилия",
-                  "edit": false,
-                  "show": true,
-                  "required": false
-                },
-                {
-                  "type": "Text",
-                  "name": "First_Name",
-                  "label": "Имя",
-                  "edit": false,
-                  "show": true,
-                  "required": false
-                },
-                {
-                  "type": "Text",
-                  "name": "Middle_Name",
-                  "label": "Отчество",
-                  "edit": false,
-                  "show": true,
-                  "required": false
-                },
-                {
-                  "type": "DateTime",
-                  "name": "Date_of_Birth",
-                  "label": "Дата рождения",
-                  "edit": false,
-                  "show": true,
-                  "required": true
-                },
-                {
-                  "type": "Enum",
-                  "name": "Sex",
-                  "label": "Пол",
-                  "enumDef": "C780CE23-AC09-4CC3-8147-7779F6D80B65",
-                  "edit": false,
-                  "show": true,
-                  "required": true
-                },
-                {
-                  "type": "Enum",
-                  "name": "FamilyState",
-                  "label": "Семейное положение",
-                  "enumDef": "6E4930EA-895F-4709-9511-F415FFF4C506",
-                  "edit": false,
-                  "show": true,
-                  "required": true
-                },
-                {
-                  "type": "Enum",
-                  "name": "PassportType",
-                  "label": "Типы документа",
-                  "enumDef": "639C4A54-CDC2-4752-B9BC-210A775A4613",
-                  "edit": false,
-                  "show": true,
-                  "required": true
-                },
-                {
-                  "type": "Text",
-                  "name": "PassportSeries",
-                  "label": "Серия",
-                  "edit": false,
-                  "show": true,
-                  "required": false
-                },
-                {
-                  "type": "Text",
-                  "name": "PassportNo",
-                  "label": "№",
-                  "edit": false,
-                  "show": true,
-                  "required": false
-                },
-                {
-                  "type": "Text",
-                  "name": "Issuing_Authority",
-                  "label": "Выдавший орган",
-                  "edit": false,
-                  "show": true,
-                  "required": false
-                },
-                {
-                  "type": "DateTime",
-                  "name": "Date_of_Issue",
-                  "label": "Дата выдачи",
-                  "apiName": null,
-                  "edit": false,
-                  "show": true,
-                  "required": true
-                }
-              ]
-            }
-          ]
-        },
-        {
           "type": "DocList",
           "docListDef": "70B3FBED-5C6D-4907-95DB-1D8747BC02FC",
           "name": "Coefficient_Value",
@@ -1503,6 +1383,129 @@
                   "required": false
                 }
               ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Doc",
+      "name": "Trustee",
+      "label": "Доверительное лицо",
+      "addToAttributes": false,
+      "sections": [
+        {
+          "type": "Section",
+          "name": "AppTrustee",
+          "label": "Данные жоверительного лица",
+          "contents": [
+            {
+              "type": "Text",
+              "name": "IIN",
+              "label": "ПИН",
+              "edit": false,
+              "show": true,
+              "required": false
+            },
+            {
+              "type": "Text",
+              "name": "SIN",
+              "label": "СИН",
+              "edit": false,
+              "show": true,
+              "required": false
+            },
+            {
+              "type": "Text",
+              "name": "Last_Name",
+              "label": "Фамилия",
+              "edit": false,
+              "show": true,
+              "required": false
+            },
+            {
+              "type": "Text",
+              "name": "First_Name",
+              "label": "Имя",
+              "edit": false,
+              "show": true,
+              "required": false
+            },
+            {
+              "type": "Text",
+              "name": "Middle_Name",
+              "label": "Отчество",
+              "edit": false,
+              "show": true,
+              "required": false
+            },
+            {
+              "type": "DateTime",
+              "name": "Date_of_Birth",
+              "label": "Дата рождения",
+              "edit": false,
+              "show": true,
+              "required": true
+            },
+            {
+              "type": "Enum",
+              "name": "Sex",
+              "label": "Пол",
+              "enumDef": "C780CE23-AC09-4CC3-8147-7779F6D80B65",
+              "edit": false,
+              "show": true,
+              "required": true
+            },
+            {
+              "type": "Enum",
+              "name": "FamilyState",
+              "label": "Семейное положение",
+              "enumDef": "6E4930EA-895F-4709-9511-F415FFF4C506",
+              "edit": false,
+              "show": true,
+              "required": true
+            },
+            {
+              "type": "Enum",
+              "name": "PassportType",
+              "label": "Типы документа",
+              "enumDef": "639C4A54-CDC2-4752-B9BC-210A775A4613",
+              "edit": false,
+              "show": true,
+              "required": true
+            },
+            {
+              "type": "Text",
+              "name": "PassportSeries",
+              "label": "Серия",
+              "edit": false,
+              "show": true,
+              "required": false
+            },
+            {
+              "type": "Text",
+              "name": "PassportNo",
+              "label": "№",
+              "edit": false,
+              "show": true,
+              "required": false
+            },
+            {
+              "type": "Text",
+              "name": "Issuing_Authority",
+              "label": "Выдавший орган",
+              "edit": false,
+              "show": true,
+              "required": false
+            },
+            {
+              "type": "DateTime",
+              "name": "Date_of_Issue",
+              "label": "Дата выдачи",
+              "apiName": null,
+              "edit": false,
+              "show": true,
+              "required": true
             }
           ]
         }

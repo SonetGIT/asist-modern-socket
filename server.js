@@ -277,7 +277,7 @@ async function getEnumData(Form) {
   for (var section1 = 0; section1 < Form.sections.length; section1++) {
     // 1 Level
     if (Form.sections[section1].type !== "Doc" && Form.sections[section1].type !== "DocList") {
-      console.log("TYPE", Form.sections[section1].type)
+      // console.log("TYPE", Form.sections[section1].type)
       for (var content1 = 0; content1 < Form.sections[section1].contents.length; content1++) {
         if (Form.sections[section1].contents[content1].type === "Enum") {
           let enumName = Form.sections[section1].contents[content1].name;
@@ -304,9 +304,11 @@ async function getEnumData(Form) {
         }
         // 3rd Level
         else if (Form.sections[section1].sections[section2].type === "Doc" || Form.sections[section1].sections[section2].type === "DocList") {
-          for (var section3 = 0; section3 < Form.sections[section1].sections[section2].length; section3++) {
+          // console.log("DOC EN 2 LV", Form.sections[section1].sections[section2].name, Form.sections[section1].sections[section2].type)
+          for (var section3 = 0; section3 < Form.sections[section1].sections[section2].sections.length; section3++) {
             for (var content3 = 0; content3 < Form.sections[section1].sections[section2].sections[section3].contents.length; content3++) {
               if (Form.sections[section1].sections[section2].sections[section3].contents[content3].type === "Enum") {
+                // console.log("DOC EN 3 LV", Form.sections[section1].sections[section2].sections[section3].contents[content3].name)
                 let enumName = Form.sections[section1].sections[section2].sections[section3].contents[content3].name;
                 let enumDef = Form.sections[section1].sections[section2].sections[section3].contents[content3].enumDef;
                 let apiName = enumDataApi + enumDef;
@@ -386,21 +388,24 @@ async function getSubDocuments(selectedDoc, form, userId) {
   let selDoc = JSON.parse(selectedDoc);
   for (let i = 0; i < selDoc.attributes.length; i++) {
     if (selDoc.attributes[i].type === "Doc" && selDoc.attributes[i].value !== null) {
-      for (let s = 0; s < form.sections.length; s++) {
-        if (form.sections[s].type === "Doc" && selDoc.attributes[i].name === form.sections[s].name) {
-          await request({
-            headers: { "content-type": "application/json" },
-            url: asistRESTApi + "/ASIST-MODERN-API/api/Document/GetDocumentById/" + selDoc.attributes[i].value + "?userId=" + userId,
-            json: true,
-            method: "GET",
-          })
-            .then(async function (response) {
-              // console.log("RES: ", selDoc.attributes[i].name, response.attributes[0]);
-              subDocuments[selDoc.attributes[i].name] = response;
+      if (selDoc.attributes[i].subDocument === null) {
+        for (let s = 0; s < form.sections.length; s++) {
+          if (form.sections[s].type === "Doc" && selDoc.attributes[i].name === form.sections[s].name) {
+            await request({
+              headers: { "content-type": "application/json" },
+              url: asistRESTApi + "/ASIST-MODERN-API/api/Document/GetDocumentById/" + selDoc.attributes[i].value + "?userId=" + userId,
+              json: true,
+              method: "GET",
             })
-            .catch(function (error) { });
+              .then(async function (response) {
+                console.log("RES: ", selDoc.attributes[i].name);
+                subDocuments[selDoc.attributes[i].name] = response;
+              })
+              .catch(function (error) { });
+          }
         }
       }
+
     }
   }
   return subDocuments;
@@ -419,57 +424,58 @@ async function getSubDocList(selectedDoc, form, userId, userRole) {
       let listItem = await fetchSubDocList(url, gButtons)
       subDocList[name] = listItem
     }
-    if (form.sections[s1].type === "Doc") { // 2 Level
-      for (let s2 = 0; s2 < form.sections[s1].sections[s2].length; s2++) {
-        console.log("DOC", form.sections[s1].sections[s2].name)
+    else if (form.sections[s1].type === "Doc") { // 2 Level
+      // console.log("DOC2", form.sections[s1].name)
+      for (let s2 = 0; s2 < form.sections[s1].sections.length; s2++) {
         if (form.sections[s1].sections[s2].type === "DocList") {
-          let name = form.sections[s1].sections[s2].name
-          let docId = get2LevelDocId(selDoc, name)
+          let name = form.sections[s1].name
+          let docId = await get2LevelDocId(selDoc, name)
           let api = ConfigurationFile.enumConfig[form.sections[s1].sections[s2].docListDef].api
-          // console.log("API", api)
           let url = api + docId + "&userId=" + userId
           let gButtons = GridFormButtons[ConfigurationFile.rolesConfig[userRole]][form.sections[s1].sections[s2].buttons]
           let listItem = await fetchSubDocList(url, gButtons)
-          subDocList[name] = listItem
+          // console.log("URL", name, form.sections[s1].sections[s2].name, api, listItem)
+          subDocList[form.sections[s1].sections[s2].name] = listItem
         }
-        else if (form.sections[s1].sections[s2].type === "Doc") {
-          for (let s3 = 0; s3 < form.sections[s1].sections[s2].sections.length; s3++) {
-            if (form.sections[s1].sections[s2].sections[s3].type === "DocList") {
-              let name = form.sections[s1].sections[s2].sections[s3].name
-              let docId = get3LevelDocId(selDoc,)
-              let api = ConfigurationFile.enumConfig[form.sections[s1].sections[s2].sections[s3].docListDef].api
-              let url = api + docId + "&userId=" + userId
-              console.log("API", api)
-              let gButtons = GridFormButtons[ConfigurationFile.rolesConfig[userRole]][form.sections[s1].sections[s2].sections[s3].buttons]
-              let listItem = await fetchSubDocList(url, gButtons)
-              subDocList[name] = listItem
-            }
-          }
-        }
+        // else if (form.sections[s1].sections[s2].type === "Doc") {
+        //   // console.log("DOC3", form.sections[s1].sections[s2].name)
+        //   for (let s3 = 0; s3 < form.sections[s1].sections[s2].sections.length; s3++) {
+        //     if (form.sections[s1].sections[s2].sections[s3].type === "DocList") {
+        //       let name = form.sections[s1].sections[s2].sections[s3].name
+        //       let docId = await get3LevelDocId(selDoc, name)
+        //       let api = ConfigurationFile.enumConfig[form.sections[s1].sections[s2].sections[s3].docListDef].api
+        //       let url = api + docId + "&userId=" + userId
+        //       // console.log("API", url)
+        //       let gButtons = GridFormButtons[ConfigurationFile.rolesConfig[userRole]][form.sections[s1].sections[s2].sections[s3].buttons]
+        //       let listItem = await fetchSubDocList(url, gButtons)
+        //       subDocList[name] = listItem
+        //     }
+        //   }
+        // }
       }
     }
   }
   return subDocList;
 }
+
 async function get2LevelDocId(doc, name) {
   for (let i1 = 0; i1 < doc.attributes.length; i1++) {
-    if (doc.attributes[i1].type === "DocList" && doc.attributes[i1].name === name) {
-      // console.log("ID", doc.attributes[i1].id)
-      return doc.attributes[i1].id
+    if (doc.attributes[i1].type === "Doc" && doc.attributes[i1].name === name) {
+      return doc.attributes[i1].value
     }
   }
 }
-async function get3LevelDocId(doc, name) {
-  for (let i1 = 0; i1 < doc.attributes.length; i1++) {
-    if (doc.attributes[i1].type === "Doc") {
-      for (let i2 = 0; i2 < doc.attributes[i1].attributes.length; i2++) {
-        if (doc.attributes[i1].attributes[i2].type === "DocList" && doc.attributes[i1].attributes[i2].type === name) {
-          return doc.attributes[i1].attributes[i2].id
-        }
-      }
-    }
-  }
-}
+// async function get3LevelDocId(doc, name) {
+//   for (let i1 = 0; i1 < doc.attributes.length; i1++) {
+//     if (doc.attributes[i1].type === "Doc") {
+//       for (let i2 = 0; i2 < doc.attributes[i1].subDocument.attributes.length; i2++) {
+//         if (doc.attributes[i1].subDocument.attributes[i2].type === "DocList" && doc.attributes[i1].subDocument.attributes[i2].type === name) {
+//           return doc.attributes[i1].subDocument.attributes[i2].id
+//         }
+//       }
+//     }
+//   }
+// }
 async function fetchSubDocList(url, buttons) {
   // console.log("URL", url)
   let resp = {}
@@ -482,7 +488,7 @@ async function fetchSubDocList(url, buttons) {
     .then(async function (response) {
       response.buttons = buttons;
       resp = response;
-      // console.log("RES SUBDOCL: ", response.buttons);
+      // console.log("RES SUBDOCL: ", response);
     })
     .catch(function (error) {
       let er = { totalCount: 0, documents: [] }
@@ -642,7 +648,7 @@ async function sendAppStateForm(message, taskID, restore) {
     gridFormEnumData = await getEnumData(gridForm);
   }
   if (message.selectedDoc !== "null") {
-    // subDocuments = await getSubDocuments(message.selectedDoc, appStateForm, message.userId);
+    subDocuments = await getSubDocuments(message.selectedDoc, appStateForm, message.userId);
     // if (message.taskType === "showAppStateForm") {
     //   subDocuments.Application = JSON.parse(message.application);
     // }
