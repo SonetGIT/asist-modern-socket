@@ -46,6 +46,7 @@
       "type": "Doc",
       "name": "Person",
       "label": "Гражданин",
+      "addToAttributes": true,
       "sections": [
         {
           "type": "Section",

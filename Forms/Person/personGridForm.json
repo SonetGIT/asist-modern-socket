@@ -111,7 +111,6 @@
           "type": "DateTime",
           "name": "Date_of_Issue",
           "label": "Дата выдачи",
-          "apiName": null,
           "edit": false,
           "show": true,
           "required": true

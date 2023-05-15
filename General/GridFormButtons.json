@@ -1,6 +1,6 @@
 {
   "Administrator": {
-    "null": [],
+    "null": "null",
     "PersonGridFormButtons": [
       {
         "name": "select",

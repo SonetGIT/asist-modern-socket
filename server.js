@@ -387,25 +387,36 @@ async function getSubDocuments(selectedDoc, form, userId) {
   let subDocuments = {};
   let selDoc = JSON.parse(selectedDoc);
   for (let i = 0; i < selDoc.attributes.length; i++) {
-    if (selDoc.attributes[i].type === "Doc" && selDoc.attributes[i].value !== null) {
-      if (selDoc.attributes[i].subDocument === null) {
-        for (let s = 0; s < form.sections.length; s++) {
-          if (form.sections[s].type === "Doc" && selDoc.attributes[i].name === form.sections[s].name) {
-            await request({
-              headers: { "content-type": "application/json" },
-              url: asistRESTApi + "/ASIST-MODERN-API/api/Document/GetDocumentById/" + selDoc.attributes[i].value + "?userId=" + userId,
-              json: true,
-              method: "GET",
-            })
-              .then(async function (response) {
-                console.log("RES: ", selDoc.attributes[i].name);
-                subDocuments[selDoc.attributes[i].name] = response;
+    if (selDoc.attributes[i].type === "Doc") {
+      if (selDoc.attributes[i].value !== null) {
+        if (selDoc.attributes[i].value !== null && (selDoc.attributes[i].subDocument === null || selDoc.attributes[i].subDocument === undefined)) {
+          console.log("SUB DOC", selDoc.attributes[i].name)
+          // if (selDoc.attributes[i].subDocument === null || selDoc.attributes[i].subDocument === undefined) {
+          for (let s = 0; s < form.sections.length; s++) {
+            if (form.sections[s].type === "Doc" && selDoc.attributes[i].name === form.sections[s].name) {
+              await request({
+                headers: { "content-type": "application/json" },
+                url: asistRESTApi + "/ASIST-MODERN-API/api/Document/GetDocumentById/" + selDoc.attributes[i].value + "?userId=" + userId,
+                json: true,
+                method: "GET",
               })
-              .catch(function (error) { });
+                .then(async function (response) {
+                  console.log("RES: ", selDoc.attributes[i].name);
+                  subDocuments[selDoc.attributes[i].name] = response;
+                })
+                .catch(function (error) { });
+            }
           }
+          // }
+
+        }
+        else if (typeof selDoc.attributes[i].subDocument === "object") {
+          subDocuments[selDoc.attributes[i].name] = selDoc.attributes[i].subDocument
         }
       }
-
+      else {
+        subDocuments[selDoc.attributes[i].name] = { id: null, attributes: [] }
+      }
     }
   }
   return subDocuments;
@@ -425,16 +436,16 @@ async function getSubDocList(selectedDoc, form, userId, userRole) {
       subDocList[name] = listItem
     }
     else if (form.sections[s1].type === "Doc") { // 2 Level
-      // console.log("DOC2", form.sections[s1].name)
+      let name = form.sections[s1].name
+      let docId = await get2LevelDocId(selDoc, name)
+      console.log("DOC ID", docId)
       for (let s2 = 0; s2 < form.sections[s1].sections.length; s2++) {
         if (form.sections[s1].sections[s2].type === "DocList") {
-          let name = form.sections[s1].name
-          let docId = await get2LevelDocId(selDoc, name)
           let api = ConfigurationFile.enumConfig[form.sections[s1].sections[s2].docListDef].api
           let url = api + docId + "&userId=" + userId
           let gButtons = GridFormButtons[ConfigurationFile.rolesConfig[userRole]][form.sections[s1].sections[s2].buttons]
           let listItem = await fetchSubDocList(url, gButtons)
-          // console.log("URL", name, form.sections[s1].sections[s2].name, api, listItem)
+          console.log("URL", name, form.sections[s1].sections[s2].name, url, listItem)
           subDocList[form.sections[s1].sections[s2].name] = listItem
         }
         // else if (form.sections[s1].sections[s2].type === "Doc") {
@@ -461,6 +472,7 @@ async function getSubDocList(selectedDoc, form, userId, userRole) {
 async function get2LevelDocId(doc, name) {
   for (let i1 = 0; i1 < doc.attributes.length; i1++) {
     if (doc.attributes[i1].type === "Doc" && doc.attributes[i1].name === name) {
+      // console.log("ATTR", doc.attributes[i1].name, doc.attributes[i1].type, doc.attributes[i1].value)
       return doc.attributes[i1].value
     }
   }
@@ -581,27 +593,32 @@ async function sendUserForm(session_id, message, restore) {
     tabLabel: message.tabLabel,
     totalCount: message.totalCount,
   };
-  console.log("Sending User Form");
+  // console.log("Sending User Form");
   await sendMessage(mes);
 }
 // Collect data related to PersonForm form and send to client
 async function sendPersonForm(message, taskID, restore) {
   console.log("MESS", message);
   // let form = eval(message.form)
-  let personForm = JSON.parse(JSON.parse(message.form));
+  let personForm = null;
   let gridForm = null;
   let gridFormButtons = null;
   let tableFormButtons = null;
   let gridFormEnumData = null;
+  let enumData = null;
+  let buttons = null;
   if (message.gridForm !== "null") {
     gridForm = JSON.parse(JSON.parse(message.gridForm));
     gridFormButtons = GridFormButtons[ConfigurationFile.rolesConfig[message.userRole]][message.gridFormButtons];
     gridFormEnumData = await getEnumData(gridForm);
   }
-  buttons = Buttons[ConfigurationFile.rolesConfig[message.userRole]][message.buttons];
-  tableFormButtons = TableFormButtons[ConfigurationFile.rolesConfig[message.userRole]][message.tableFormButtons];
+  if (message.form !== "null") {
+    personForm = JSON.parse(JSON.parse(message.form));
+    buttons = Buttons[ConfigurationFile.rolesConfig[message.userRole]][message.buttons];
+    tableFormButtons = TableFormButtons[ConfigurationFile.rolesConfig[message.userRole]][message.tableFormButtons];
+    enumData = await getEnumData(personForm);
+  }
 
-  var enumData = await getEnumData(personForm);
   var messageType = "userTask";
   if (restore === true) {
     messageType = "restoreTab";

@@ -13,6 +13,12 @@
         "label": "Отмена",
         "backgroundColor": "#4F7AAE",
         "color": "white"
+      },
+      {
+        "name": "back",
+        "label": "Назад",
+        "backgroundColor": "#4F7AAE",
+        "color": "white"
       }
     ],
     "CloseMonthPreviewTableButtons": [

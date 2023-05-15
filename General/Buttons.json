@@ -49,8 +49,16 @@
     ],
     "AppStateBtn": [
       {
-        "name": "printKON",
-        "label": "Печать КОН"
+        "name": "createFamMemDoc",
+        "label": "Добавить ЧДМХ"
+      },
+      {
+        "name": "createIncomeDoc",
+        "label": "Добавить доход"
+      },
+      {
+        "name": "createLandPlotDoc",
+        "label": "Добавить зем/уч"
       },
       {
         "name": "createTrusteePerson",
@@ -61,20 +69,16 @@
         "label": "КОН"
       },
       {
-        "name": "createFamMemDoc",
-        "label": "Создать ЧДМХ"
-      },
-      {
-        "name": "createLandPlotDoc",
-        "label": "Добавить зем/уч"
-      },
-      {
-        "name": "createIncomeDoc",
-        "label": "Добавить доход"
+        "name": "registerState",
+        "label": "Зарегистрировать"
       },
       {
         "name": "refusState",
         "label": "На доработку"
+      },
+      {
+        "name": "printKON",
+        "label": "Печать КОН"
       },
       {
         "name": "dataMSE",

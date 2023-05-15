@@ -1,6 +1,6 @@
 {
-  "formName": "Application_State",
-  "defid": "547bba55-2281-4388-a1fc-ee890168ac2d",
+  "formName": "Application_StateViewForm",
+  "defid": "f75cf5e8-c022-42d2-aa5b-64495af1e6d5",
   "label": "Анкета домохозяйства",
   "sections": [
     {
@@ -181,7 +181,7 @@
               "name": "RegionId",
               "label": "Область",
               "enumDef": "8C5E9217-59AC-4B4E-A41A-643FC34444E4",
-              "edit": true,
+              "edit": false,
               "show": true,
               "required": true
             },
@@ -190,7 +190,7 @@
               "name": "DistrictId",
               "label": "Район/Город",
               "enumDef": "4D029337-C025-442E-8E93-AFD1852073AC",
-              "edit": true,
+              "edit": false,
               "show": true,
               "required": true
             },
@@ -199,7 +199,7 @@
               "name": "DjamoatId",
               "label": "Джамоат",
               "enumDef": "967D525D-9B76-44BE-93FA-BD4639EA515A",
-              "edit": true,
+              "edit": false,
               "show": true,
               "required": true
             },
@@ -208,7 +208,7 @@
               "name": "VillageId",
               "label": "Село",
               "enumDef": "B70BAD68-7532-471F-A705-364FD5F1BA9E",
-              "edit": true,
+              "edit": false,
               "show": true,
               "required": true
             },
@@ -216,7 +216,7 @@
               "type": "Text",
               "name": "street",
               "label": "Улица",
-              "edit": true,
+              "edit": false,
               "show": true,
               "required": false
             },
@@ -224,7 +224,7 @@
               "type": "Text",
               "name": "House",
               "label": "Дом",
-              "edit": true,
+              "edit": false,
               "show": true,
               "required": false
             },
@@ -232,7 +232,7 @@
               "type": "Text",
               "name": "flat",
               "label": "Квартира",
-              "edit": true,
+              "edit": false,
               "show": true,
               "required": false
             },
@@ -240,7 +240,7 @@
               "type": "Text",
               "name": "Number_h",
               "label": "Тел. сотовый",
-              "edit": true,
+              "edit": false,
               "show": true,
               "required": false
             },
@@ -248,7 +248,7 @@
               "type": "Text",
               "name": "Number_c",
               "label": "Тел. домашний",
-              "edit": true,
+              "edit": false,
               "show": true,
               "required": false
             },
@@ -256,7 +256,7 @@
               "type": "Text",
               "name": "E_mail",
               "label": "E-mail",
-              "edit": true,
+              "edit": false,
               "show": true,
               "required": false
             }
