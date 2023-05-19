@@ -16,7 +16,6 @@ var path = require("path");
 // RESTS LOCAL
 const CamundaApiHost = "http://192.168.2.19:8080/engine-rest"; // Camunda REST //статический адрес
 const metaRESTApi = "http://192.168.2.150:5656"; // Depo main REST/нах-ся - meta data
-//const asistRESTApi = "http://192.168.0.54:80" // Depo main REST
 const asistRESTApi = "http://192.168.2.150"; // ASIST main REST
 const keycloakRESTApi = "http://192.168.2.160:8080"; // Keycloak REST
 const jasperRESTApi = "http://192.168.2.150:8080"; // Jasper REST
@@ -468,7 +467,6 @@ async function getSubDocList(selectedDoc, form, userId, userRole) {
   }
   return subDocList;
 }
-
 async function get2LevelDocId(doc, name) {
   for (let i1 = 0; i1 < doc.attributes.length; i1++) {
     if (doc.attributes[i1].type === "Doc" && doc.attributes[i1].name === name) {
